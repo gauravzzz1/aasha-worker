@@ -52,10 +52,6 @@ button{
     display:none !important;
 }
 
-/* ================================
-   LOGIN
-================================ */
-
 .login-screen{
     min-height:100vh;
     display:flex;
@@ -88,10 +84,6 @@ button{
     margin-bottom:25px;
 }
 
-/* ================================
-   FORM
-================================ */
-
 .form-group{
     margin-bottom:15px;
 }
@@ -114,13 +106,8 @@ button{
 
 .form-control:focus{
     border-color:var(--secondary);
-    box-shadow:
-        0 0 0 3px rgba(11,92,171,.1);
+    box-shadow:0 0 0 3px rgba(11,92,171,.1);
 }
-
-/* ================================
-   BUTTONS
-================================ */
 
 .btn{
     border:0;
@@ -162,21 +149,14 @@ button{
     width:100%;
 }
 
-/* ================================
-   HEADER
-================================ */
-
 .app-header{
     background:var(--primary);
     color:white;
     padding:17px 25px;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.15);
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
 .brand h1{
@@ -192,27 +172,16 @@ button{
     gap:8px;
 }
 
-/* ================================
-   CONTAINER
-================================ */
-
 .container{
     width:95%;
     max-width:1500px;
     margin:25px auto;
 }
 
-/* ================================
-   DASHBOARD
-================================ */
-
 .stats{
     display:grid;
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:17px;
-
     margin-bottom:22px;
 }
 
@@ -220,9 +189,7 @@ button{
     background:white;
     border-radius:14px;
     padding:21px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.06);
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
 
 .stat .label{
@@ -238,25 +205,18 @@ button{
     margin-top:7px;
 }
 
-/* ================================
-   PANEL
-================================ */
-
 .panel{
     background:white;
     border-radius:14px;
     padding:22px;
     margin-bottom:22px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.06);
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
 
 .panel-title{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:18px;
 }
 
@@ -265,21 +225,11 @@ button{
     font-size:19px;
 }
 
-/* ================================
-   GRID
-================================ */
-
 .grid{
     display:grid;
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
 }
-
-/* ================================
-   ACTIONS
-================================ */
 
 .actions{
     display:flex;
@@ -288,32 +238,20 @@ button{
     margin-top:17px;
 }
 
-/* ================================
-   NOTICE
-================================ */
-
 .notice{
     background:#fff7e6;
     border:1px solid #ffd591;
     color:#7a4b00;
-
     padding:12px;
     border-radius:9px;
-
     margin-bottom:17px;
-
     font-size:13px;
 }
-
-/* ================================
-   SEARCH TOOLBAR
-================================ */
 
 .toolbar{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-
     margin-bottom:17px;
 }
 
@@ -321,10 +259,6 @@ button{
     flex:1;
     min-width:250px;
 }
-
-/* ================================
-   TABLE
-================================ */
 
 .table-wrap{
     width:100%;
@@ -340,16 +274,13 @@ table{
 th,
 td{
     padding:12px 10px;
-    border-bottom:
-        1px solid #e8ebf0;
-
+    border-bottom:1px solid #e8ebf0;
     text-align:left;
 }
 
 th{
     background:#f5f7fa;
     color:#344054;
-
     font-size:12px;
     text-transform:uppercase;
 }
@@ -367,16 +298,10 @@ tr:hover td{
     gap:6px;
 }
 
-/* ================================
-   MESSAGE
-================================ */
-
 .message{
     padding:11px 13px;
     border-radius:8px;
-
     margin-top:12px;
-
     display:none;
 }
 
@@ -394,24 +319,14 @@ tr:hover td{
     color:#991b1b;
 }
 
-/* ================================
-   MODAL
-================================ */
-
 .modal{
     position:fixed;
     inset:0;
-
-    background:
-        rgba(0,0,0,.55);
-
+    background:rgba(0,0,0,.55);
     display:none;
-
     justify-content:center;
     align-items:center;
-
     padding:20px;
-
     z-index:1000;
 }
 
@@ -422,12 +337,9 @@ tr:hover td{
 .modal-card{
     width:100%;
     max-width:850px;
-
     max-height:92vh;
     overflow:auto;
-
     background:white;
-
     border-radius:16px;
     padding:23px;
 }
@@ -436,69 +348,44 @@ tr:hover td{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:20px;
 }
 
 .close{
     background:none;
     border:0;
-
     font-size:28px;
     color:#667085;
 }
-
-/* ================================
-   PAGINATION
-================================ */
 
 .pagination{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-top:17px;
 }
-
-/* ================================
-   EMPTY
-================================ */
 
 .empty{
     text-align:center;
     padding:35px;
-
     color:var(--muted);
 }
-
-/* ================================
-   FOOTER
-================================ */
 
 .footer{
     text-align:center;
-
     color:var(--muted);
-
     font-size:12px;
-
     padding:25px;
 }
-
-/* ================================
-   MOBILE
-================================ */
 
 @media(max-width:1100px){
 
     .stats{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
     .grid{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -543,32 +430,17 @@ tr:hover td{
 
 <body>
 
-
-<!-- =========================================================
-     LOGIN SCREEN
-========================================================= -->
-
-<div
-    id="loginScreen"
-    class="login-screen"
->
+<div id="loginScreen" class="login-screen">
 
     <div class="login-card">
 
-        <h1>
-            ASHA Worker
-        </h1>
+        <h1>ASHA Worker</h1>
 
-        <p>
-            Administrator Login
-        </p>
-
+        <p>Administrator Login</p>
 
         <div class="form-group">
 
-            <label>
-                Email
-            </label>
+            <label>Email</label>
 
             <input
                 id="loginEmail"
@@ -579,12 +451,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                Password
-            </label>
+            <label>Password</label>
 
             <input
                 id="loginPassword"
@@ -595,7 +464,6 @@ tr:hover td{
 
         </div>
 
-
         <button
             id="loginBtn"
             class="btn btn-primary btn-block"
@@ -603,7 +471,6 @@ tr:hover td{
         >
             Login
         </button>
-
 
         <div
             id="loginMessage"
@@ -615,16 +482,7 @@ tr:hover td{
 </div>
 
 
-
-<!-- =========================================================
-     APPLICATION
-========================================================= -->
-
-<div
-    id="app"
-    class="hidden"
->
-
+<div id="app" class="hidden">
 
 <header class="app-header">
 
@@ -640,7 +498,6 @@ tr:hover td{
 
     </div>
 
-
     <div class="header-actions">
 
         <button
@@ -649,7 +506,6 @@ tr:hover td{
         >
             Refresh
         </button>
-
 
         <button
             class="btn btn-danger"
@@ -663,16 +519,9 @@ tr:hover td{
 </header>
 
 
-
 <main class="container">
 
-
-<!-- =========================================================
-     STATISTICS
-========================================================= -->
-
 <section class="stats">
-
 
     <div class="stat">
 
@@ -680,15 +529,11 @@ tr:hover td{
             TOTAL WORKERS
         </div>
 
-        <div
-            id="totalCount"
-            class="value"
-        >
+        <div id="totalCount" class="value">
             0
         </div>
 
     </div>
-
 
     <div class="stat">
 
@@ -696,15 +541,11 @@ tr:hover td{
             RECORDS SHOWN
         </div>
 
-        <div
-            id="shownCount"
-            class="value"
-        >
+        <div id="shownCount" class="value">
             0
         </div>
 
     </div>
-
 
     <div class="stat">
 
@@ -712,15 +553,11 @@ tr:hover td{
             WITH ABHA ID
         </div>
 
-        <div
-            id="abhaCount"
-            class="value"
-        >
+        <div id="abhaCount" class="value">
             0
         </div>
 
     </div>
-
 
     <div class="stat">
 
@@ -728,26 +565,16 @@ tr:hover td{
             BANK DETAILS
         </div>
 
-        <div
-            id="bankCount"
-            class="value"
-        >
+        <div id="bankCount" class="value">
             0
         </div>
 
     </div>
 
-
 </section>
 
 
-
-<!-- =========================================================
-     ADD WORKER
-========================================================= -->
-
 <section class="panel">
-
 
     <div class="panel-title">
 
@@ -757,7 +584,6 @@ tr:hover td{
 
     </div>
 
-
     <div class="notice">
 
         Aadhaar and bank details are sensitive.
@@ -765,34 +591,24 @@ tr:hover td{
 
     </div>
 
-
     <div class="grid">
-
 
         <div class="form-group">
 
-            <label>
-                Birth Date
-            </label>
+            <label>Birth Date</label>
 
             <input
                 id="birth_date"
                 class="form-control"
                 type="date"
-                onchange="calculateAge(
-                    'birth_date',
-                    'age'
-                )"
+                onchange="calculateAge('birth_date','age')"
             >
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                Age
-            </label>
+            <label>Age</label>
 
             <input
                 id="age"
@@ -803,12 +619,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                Date of Joining
-            </label>
+            <label>Date of Joining</label>
 
             <input
                 id="date_of_joining"
@@ -818,12 +631,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                ABHA ID
-            </label>
+            <label>ABHA ID</label>
 
             <input
                 id="aabha_id"
@@ -833,12 +643,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                Aadhaar Card No.
-            </label>
+            <label>Aadhaar Card No.</label>
 
             <input
                 id="aadhar_card_no"
@@ -850,12 +657,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                Bank Account No.
-            </label>
+            <label>Bank Account No.</label>
 
             <input
                 id="bank_acc_no"
@@ -866,12 +670,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                Bank Name
-            </label>
+            <label>Bank Name</label>
 
             <input
                 id="bank_name"
@@ -881,12 +682,9 @@ tr:hover td{
 
         </div>
 
-
         <div class="form-group">
 
-            <label>
-                IFSC Code
-            </label>
+            <label>IFSC Code</label>
 
             <input
                 id="ifsc_code"
@@ -896,9 +694,7 @@ tr:hover td{
 
         </div>
 
-
     </div>
-
 
     <div class="actions">
 
@@ -909,7 +705,6 @@ tr:hover td{
             + Add Worker
         </button>
 
-
         <button
             class="btn btn-light"
             onclick="clearForm()"
@@ -919,30 +714,18 @@ tr:hover td{
 
     </div>
 
-
-    <div
-        id="formMessage"
-        class="message"
-    ></div>
-
+    <div id="formMessage" class="message"></div>
 
 </section>
 
 
-
-<!-- =========================================================
-     WORKER TABLE
-========================================================= -->
-
 <section class="panel">
-
 
     <div class="panel-title">
 
         <h2>
             ASHA Worker Records
         </h2>
-
 
         <button
             class="btn btn-primary"
@@ -953,9 +736,7 @@ tr:hover td{
 
     </div>
 
-
     <div class="toolbar">
-
 
         <input
             id="searchBox"
@@ -964,14 +745,12 @@ tr:hover td{
             oninput="applyFilters()"
         >
 
-
         <input
             id="joinFrom"
             class="form-control"
             type="date"
             onchange="applyFilters()"
         >
-
 
         <input
             id="joinTo"
@@ -980,102 +759,49 @@ tr:hover td{
             onchange="applyFilters()"
         >
 
-
         <select
             id="pageSize"
             class="form-control"
             onchange="changePageSize()"
         >
 
-            <option value="10">
-                10 rows
-            </option>
-
-            <option value="25">
-                25 rows
-            </option>
-
-            <option value="50">
-                50 rows
-            </option>
-
-            <option value="100">
-                100 rows
-            </option>
+            <option value="10">10 rows</option>
+            <option value="25">25 rows</option>
+            <option value="50">50 rows</option>
+            <option value="100">100 rows</option>
 
         </select>
 
-
     </div>
-
-
 
     <div class="table-wrap">
 
-
         <table>
-
 
             <thead>
 
                 <tr>
 
-                    <th>
-                        ID
-                    </th>
-
-                    <th>
-                        Birth Date
-                    </th>
-
-                    <th>
-                        Age
-                    </th>
-
-                    <th>
-                        Joining Date
-                    </th>
-
-                    <th>
-                        ABHA ID
-                    </th>
-
-                    <th>
-                        Aadhaar
-                    </th>
-
-                    <th>
-                        Bank Account
-                    </th>
-
-                    <th>
-                        Bank Name
-                    </th>
-
-                    <th>
-                        IFSC
-                    </th>
-
-                    <th>
-                        Actions
-                    </th>
+                    <th>ID</th>
+                    <th>Birth Date</th>
+                    <th>Age</th>
+                    <th>Joining Date</th>
+                    <th>ABHA ID</th>
+                    <th>Aadhaar</th>
+                    <th>Bank Account</th>
+                    <th>Bank Name</th>
+                    <th>IFSC</th>
+                    <th>Actions</th>
 
                 </tr>
 
             </thead>
 
-
-            <tbody
-                id="workerTable"
-            ></tbody>
-
+            <tbody id="workerTable"></tbody>
 
         </table>
 
-
     </div>
-
-
 
     <div class="pagination">
 
@@ -1086,13 +812,9 @@ tr:hover td{
             Previous
         </button>
 
-
-        <span
-            id="pageInfo"
-        >
+        <span id="pageInfo">
             Page 1
         </span>
-
 
         <button
             class="btn btn-light"
@@ -1103,41 +825,27 @@ tr:hover td{
 
     </div>
 
-
 </section>
 
 
 <div class="footer">
-
     ASHA Worker Management System
-
 </div>
-
 
 </main>
 
 </div>
 
 
-
-<!-- =========================================================
-     EDIT MODAL
-========================================================= -->
-
-<div
-    id="editModal"
-    class="modal"
->
+<div id="editModal" class="modal">
 
     <div class="modal-card">
-
 
         <div class="modal-head">
 
             <h2>
                 Edit ASHA Worker
             </h2>
-
 
             <button
                 class="close"
@@ -1148,21 +856,16 @@ tr:hover td{
 
         </div>
 
-
         <input
             id="edit_id"
             type="hidden"
         >
 
-
         <div class="grid">
-
 
             <div class="form-group">
 
-                <label>
-                    Birth Date
-                </label>
+                <label>Birth Date</label>
 
                 <input
                     id="edit_birth_date"
@@ -1176,12 +879,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Age
-                </label>
+                <label>Age</label>
 
                 <input
                     id="edit_age"
@@ -1192,12 +892,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Date of Joining
-                </label>
+                <label>Date of Joining</label>
 
                 <input
                     id="edit_date_of_joining"
@@ -1207,12 +904,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    ABHA ID
-                </label>
+                <label>ABHA ID</label>
 
                 <input
                     id="edit_aabha_id"
@@ -1222,12 +916,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Aadhaar Card No.
-                </label>
+                <label>Aadhaar Card No.</label>
 
                 <input
                     id="edit_aadhar_card_no"
@@ -1238,12 +929,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Bank Account No.
-                </label>
+                <label>Bank Account No.</label>
 
                 <input
                     id="edit_bank_acc_no"
@@ -1253,12 +941,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    Bank Name
-                </label>
+                <label>Bank Name</label>
 
                 <input
                     id="edit_bank_name"
@@ -1268,12 +953,9 @@ tr:hover td{
 
             </div>
 
-
             <div class="form-group">
 
-                <label>
-                    IFSC Code
-                </label>
+                <label>IFSC Code</label>
 
                 <input
                     id="edit_ifsc_code"
@@ -1283,9 +965,7 @@ tr:hover td{
 
             </div>
 
-
         </div>
-
 
         <div class="actions">
 
@@ -1296,7 +976,6 @@ tr:hover td{
                 Save Changes
             </button>
 
-
             <button
                 class="btn btn-light"
                 onclick="closeEdit()"
@@ -1306,32 +985,23 @@ tr:hover td{
 
         </div>
 
-
         <div
             id="editMessage"
             class="message"
         ></div>
-
 
     </div>
 
 </div>
 
 
-
 <script>
-
-/* =========================================================
-   SUPABASE CONFIGURATION
-========================================================= */
 
 const SUPABASE_URL =
     "https://dosftayxhqvwqnutrbge.supabase.co";
 
-
 const SUPABASE_ANON_KEY =
     "sb_publishable_saemaeefPQJTpEPLztTw4w_jY0WQLhS";
-
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1340,33 +1010,16 @@ const supabaseClient =
     );
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 let allWorkers = [];
-
 let filteredWorkers = [];
-
 let currentPage = 1;
-
 let pageSize = 10;
 
 
-/* =========================================================
-   SHORT SELECTOR
-========================================================= */
-
 function $(id){
-
     return document.getElementById(id);
-
 }
 
-
-/* =========================================================
-   HTML SECURITY
-========================================================= */
 
 function escapeHTML(value){
 
@@ -1380,15 +1033,7 @@ function escapeHTML(value){
 }
 
 
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-function showMessage(
-    id,
-    text,
-    type
-){
+function showMessage(id,text,type){
 
     const element = $(id);
 
@@ -1411,16 +1056,10 @@ function hideMessage(id){
 }
 
 
-/* =========================================================
-   DATE
-========================================================= */
-
 function normalizeDate(value){
 
     if(!value){
-
         return "";
-
     }
 
     return String(value).slice(0,10);
@@ -1431,9 +1070,7 @@ function normalizeDate(value){
 function formatDate(value){
 
     if(!value){
-
         return "";
-
     }
 
     const date =
@@ -1441,34 +1078,18 @@ function formatDate(value){
             value + "T00:00:00"
         );
 
-    if(
-        Number.isNaN(
-            date.getTime()
-        )
-    ){
-
+    if(Number.isNaN(date.getTime())){
         return value;
-
     }
 
-    return date.toLocaleDateString(
-        "en-IN"
-    );
+    return date.toLocaleDateString("en-IN");
 
 }
 
 
-/* =========================================================
-   AGE
-========================================================= */
+function calculateAge(dateId,ageId){
 
-function calculateAge(
-    dateId,
-    ageId
-){
-
-    const value =
-        $(dateId).value;
+    const value = $(dateId).value;
 
     if(!value){
 
@@ -1478,35 +1099,28 @@ function calculateAge(
 
     }
 
-
     const birth =
         new Date(
             value + "T00:00:00"
         );
 
-    const today =
-        new Date();
-
+    const today = new Date();
 
     let age =
         today.getFullYear()
         -
         birth.getFullYear();
 
-
     const month =
         today.getMonth()
         -
         birth.getMonth();
 
-
     if(
         month < 0 ||
         (
             month === 0 &&
-            today.getDate()
-            <
-            birth.getDate()
+            today.getDate() < birth.getDate()
         )
     ){
 
@@ -1514,41 +1128,23 @@ function calculateAge(
 
     }
 
-
     $(ageId).value =
-        age >= 0
-        ? age
-        : "";
+        age >= 0 ? age : "";
 
 }
 
 
-/* =========================================================
-   LOGIN
-========================================================= */
-
 async function login(){
 
-    hideMessage(
-        "loginMessage"
-    );
-
+    hideMessage("loginMessage");
 
     const email =
-        $("loginEmail")
-        .value
-        .trim();
-
+        $("loginEmail").value.trim();
 
     const password =
-        $("loginPassword")
-        .value;
+        $("loginPassword").value;
 
-
-    if(
-        !email ||
-        !password
-    ){
+    if(!email || !password){
 
         showMessage(
             "loginMessage",
@@ -1560,14 +1156,8 @@ async function login(){
 
     }
 
-
-    $("loginBtn").disabled =
-        true;
-
-
-    $("loginBtn").textContent =
-        "Logging in...";
-
+    $("loginBtn").disabled = true;
+    $("loginBtn").textContent = "Logging in...";
 
     const {
         data,
@@ -1576,21 +1166,12 @@ async function login(){
         await supabaseClient
         .auth
         .signInWithPassword({
-
             email:email,
-
             password:password
-
         });
 
-
-    $("loginBtn").disabled =
-        false;
-
-
-    $("loginBtn").textContent =
-        "Login";
-
+    $("loginBtn").disabled = false;
+    $("loginBtn").textContent = "Login";
 
     if(error){
 
@@ -1604,7 +1185,6 @@ async function login(){
 
     }
 
-
     if(!data.session){
 
         showMessage(
@@ -1617,7 +1197,6 @@ async function login(){
 
     }
 
-
     showApp();
 
     await loadWorkers();
@@ -1625,16 +1204,11 @@ async function login(){
 }
 
 
-/* =========================================================
-   SHOW APP
-========================================================= */
-
 function showApp(){
 
     $("loginScreen")
         .classList
         .add("hidden");
-
 
     $("app")
         .classList
@@ -1642,10 +1216,6 @@ function showApp(){
 
 }
 
-
-/* =========================================================
-   HIDE APP
-========================================================= */
 
 function hideApp(){
 
@@ -1653,7 +1223,6 @@ function hideApp(){
         .classList
         .add("hidden");
 
-
     $("loginScreen")
         .classList
         .remove("hidden");
@@ -1661,25 +1230,16 @@ function hideApp(){
 }
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
-
 async function logout(){
 
     await supabaseClient
         .auth
         .signOut();
 
-
     hideApp();
 
 }
 
-
-/* =========================================================
-   SESSION
-========================================================= */
 
 async function checkSession(){
 
@@ -1689,7 +1249,6 @@ async function checkSession(){
         await supabaseClient
         .auth
         .getSession();
-
 
     if(
         data &&
@@ -1706,7 +1265,7 @@ async function checkSession(){
 
 
 /* =========================================================
-   LOAD DATABASE
+   DATABASE TABLE: aasha_workers
 ========================================================= */
 
 async function loadWorkers(){
@@ -1716,7 +1275,7 @@ async function loadWorkers(){
         error
     } =
         await supabaseClient
-        .from("asha_worker")
+        .from("aasha_workers")
         .select("*")
         .order(
             "id",
@@ -1725,16 +1284,13 @@ async function loadWorkers(){
             }
         );
 
-
     if(error){
 
         console.error(error);
 
         showMessage(
             "formMessage",
-            "Database error: "
-            +
-            error.message,
+            "Database error: " + error.message,
             "error"
         );
 
@@ -1742,10 +1298,7 @@ async function loadWorkers(){
 
     }
 
-
-    allWorkers =
-        data || [];
-
+    allWorkers = data || [];
 
     applyFilters();
 
@@ -1754,72 +1307,42 @@ async function loadWorkers(){
 }
 
 
-/* =========================================================
-   FORM DATA
-========================================================= */
-
 function getFormData(){
 
     return {
 
         birth_date:
-            $("birth_date")
-            .value
-            || null,
+            $("birth_date").value || null,
 
         age:
             $("age").value
             ?
-            Number(
-                $("age").value
-            )
+            Number($("age").value)
             :
             null,
 
         date_of_joining:
-            $("date_of_joining")
-            .value
-            || null,
+            $("date_of_joining").value || null,
 
         aabha_id:
-            $("aabha_id")
-            .value
-            .trim()
-            || null,
+            $("aabha_id").value.trim() || null,
 
         aadhar_card_no:
-            $("aadhar_card_no")
-            .value
-            .trim()
-            || null,
+            $("aadhar_card_no").value.trim() || null,
 
         bank_acc_no:
-            $("bank_acc_no")
-            .value
-            .trim()
-            || null,
+            $("bank_acc_no").value.trim() || null,
 
         bank_name:
-            $("bank_name")
-            .value
-            .trim()
-            || null,
+            $("bank_name").value.trim() || null,
 
         ifsc_code:
-            $("ifsc_code")
-            .value
-            .trim()
-            .toUpperCase()
-            || null
+            $("ifsc_code").value.trim().toUpperCase() || null
 
     };
 
 }
 
-
-/* =========================================================
-   VALIDATION
-========================================================= */
 
 function validateWorker(data){
 
@@ -1834,19 +1357,15 @@ function validateWorker(data){
 
     }
 
-
     if(
         data.birth_date &&
         data.date_of_joining &&
-        data.date_of_joining
-        <
-        data.birth_date
+        data.date_of_joining < data.birth_date
     ){
 
         return "Date of joining cannot be before birth date.";
 
     }
-
 
     if(
         data.age !== null &&
@@ -1857,32 +1376,19 @@ function validateWorker(data){
 
     }
 
-
     return "";
 
 }
 
 
-/* =========================================================
-   ADD WORKER
-========================================================= */
-
 async function addWorker(){
 
-    hideMessage(
-        "formMessage"
-    );
+    hideMessage("formMessage");
 
-
-    const data =
-        getFormData();
-
+    const data = getFormData();
 
     const validation =
-        validateWorker(
-            data
-        );
-
+        validateWorker(data);
 
     if(validation){
 
@@ -1896,16 +1402,14 @@ async function addWorker(){
 
     }
 
-
     const {
         error
     } =
         await supabaseClient
-        .from("asha_worker")
+        .from("aasha_workers")
         .insert([
             data
         ]);
-
 
     if(error){
 
@@ -1913,9 +1417,7 @@ async function addWorker(){
 
         showMessage(
             "formMessage",
-            "Insert error: "
-            +
-            error.message,
+            "Insert error: " + error.message,
             "error"
         );
 
@@ -1923,13 +1425,11 @@ async function addWorker(){
 
     }
 
-
     showMessage(
         "formMessage",
         "Worker added successfully.",
         "success"
     );
-
 
     clearForm();
 
@@ -1938,109 +1438,68 @@ async function addWorker(){
 }
 
 
-/* =========================================================
-   CLEAR FORM
-========================================================= */
-
 function clearForm(){
 
-    $("birth_date").value =
-        "";
-
-    $("age").value =
-        "";
-
-    $("date_of_joining").value =
-        "";
-
-    $("aabha_id").value =
-        "";
-
-    $("aadhar_card_no").value =
-        "";
-
-    $("bank_acc_no").value =
-        "";
-
-    $("bank_name").value =
-        "";
-
-    $("ifsc_code").value =
-        "";
+    $("birth_date").value = "";
+    $("age").value = "";
+    $("date_of_joining").value = "";
+    $("aabha_id").value = "";
+    $("aadhar_card_no").value = "";
+    $("bank_acc_no").value = "";
+    $("bank_name").value = "";
+    $("ifsc_code").value = "";
 
 }
 
-
-/* =========================================================
-   EDIT OPEN
-========================================================= */
 
 function openEdit(id){
 
     const worker =
         allWorkers.find(
             item =>
-                Number(item.id)
-                ===
-                Number(id)
+                Number(item.id) === Number(id)
         );
-
 
     if(!worker){
 
-        alert(
-            "Worker not found."
-        );
+        alert("Worker not found.");
 
         return;
 
     }
 
-
     $("edit_id").value =
         worker.id ?? "";
-
 
     $("edit_birth_date").value =
         normalizeDate(
             worker.birth_date
         );
 
-
     $("edit_age").value =
         worker.age ?? "";
-
 
     $("edit_date_of_joining").value =
         normalizeDate(
             worker.date_of_joining
         );
 
-
     $("edit_aabha_id").value =
         worker.aabha_id ?? "";
-
 
     $("edit_aadhar_card_no").value =
         worker.aadhar_card_no ?? "";
 
-
     $("edit_bank_acc_no").value =
         worker.bank_acc_no ?? "";
-
 
     $("edit_bank_name").value =
         worker.bank_name ?? "";
 
-
     $("edit_ifsc_code").value =
         worker.ifsc_code ?? "";
 
-
-    hideMessage(
-        "editMessage"
-    );
-
+    hideMessage("editMessage");
 
     $("editModal")
         .classList
@@ -2049,81 +1508,47 @@ function openEdit(id){
 }
 
 
-/* =========================================================
-   UPDATE
-========================================================= */
-
 async function updateWorker(){
 
-    hideMessage(
-        "editMessage"
-    );
-
+    hideMessage("editMessage");
 
     const id =
         $("edit_id").value;
 
-
     const data = {
 
         birth_date:
-            $("edit_birth_date")
-            .value
-            || null,
+            $("edit_birth_date").value || null,
 
         age:
             $("edit_age").value
             ?
-            Number(
-                $("edit_age").value
-            )
+            Number($("edit_age").value)
             :
             null,
 
         date_of_joining:
-            $("edit_date_of_joining")
-            .value
-            || null,
+            $("edit_date_of_joining").value || null,
 
         aabha_id:
-            $("edit_aabha_id")
-            .value
-            .trim()
-            || null,
+            $("edit_aabha_id").value.trim() || null,
 
         aadhar_card_no:
-            $("edit_aadhar_card_no")
-            .value
-            .trim()
-            || null,
+            $("edit_aadhar_card_no").value.trim() || null,
 
         bank_acc_no:
-            $("edit_bank_acc_no")
-            .value
-            .trim()
-            || null,
+            $("edit_bank_acc_no").value.trim() || null,
 
         bank_name:
-            $("edit_bank_name")
-            .value
-            .trim()
-            || null,
+            $("edit_bank_name").value.trim() || null,
 
         ifsc_code:
-            $("edit_ifsc_code")
-            .value
-            .trim()
-            .toUpperCase()
-            || null
+            $("edit_ifsc_code").value.trim().toUpperCase() || null
 
     };
 
-
     const validation =
-        validateWorker(
-            data
-        );
-
+        validateWorker(data);
 
     if(validation){
 
@@ -2137,33 +1562,25 @@ async function updateWorker(){
 
     }
 
-
     const {
         error
     } =
         await supabaseClient
-        .from("asha_worker")
+        .from("aasha_workers")
         .update(data)
-        .eq(
-            "id",
-            id
-        );
-
+        .eq("id",id);
 
     if(error){
 
         showMessage(
             "editMessage",
-            "Update error: "
-            +
-            error.message,
+            "Update error: " + error.message,
             "error"
         );
 
         return;
 
     }
-
 
     closeEdit();
 
@@ -2178,10 +1595,6 @@ async function updateWorker(){
 }
 
 
-/* =========================================================
-   DELETE
-========================================================= */
-
 async function deleteWorker(id){
 
     const yes =
@@ -2189,47 +1602,32 @@ async function deleteWorker(id){
             "Are you sure you want to delete this record?"
         );
 
-
     if(!yes){
-
         return;
-
     }
-
 
     const {
         error
     } =
         await supabaseClient
-        .from("asha_worker")
+        .from("aasha_workers")
         .delete()
-        .eq(
-            "id",
-            id
-        );
-
+        .eq("id",id);
 
     if(error){
 
         alert(
-            "Delete error: "
-            +
-            error.message
+            "Delete error: " + error.message
         );
 
         return;
 
     }
 
-
     await loadWorkers();
 
 }
 
-
-/* =========================================================
-   FILTER
-========================================================= */
 
 function applyFilters(){
 
@@ -2239,62 +1637,45 @@ function applyFilters(){
         .trim()
         .toLowerCase();
 
-
     const from =
         $("joinFrom").value;
 
-
     const to =
         $("joinTo").value;
-
 
     filteredWorkers =
         allWorkers.filter(
             worker => {
 
-
                 const text = [
 
                     worker.id,
-
                     worker.birth_date,
-
                     worker.age,
-
                     worker.date_of_joining,
-
                     worker.aabha_id,
-
                     worker.aadhar_card_no,
-
                     worker.bank_acc_no,
-
                     worker.bank_name,
-
                     worker.ifsc_code
 
                 ]
                 .join(" ")
                 .toLowerCase();
 
-
                 if(
                     search &&
-                    !text.includes(
-                        search
-                    )
+                    !text.includes(search)
                 ){
 
                     return false;
 
                 }
 
-
                 const joining =
                     normalizeDate(
                         worker.date_of_joining
                     );
-
 
                 if(
                     from &&
@@ -2306,7 +1687,6 @@ function applyFilters(){
 
                 }
 
-
                 if(
                     to &&
                     joining &&
@@ -2317,46 +1697,29 @@ function applyFilters(){
 
                 }
 
-
                 return true;
 
             }
         );
 
-
-    currentPage =
-        1;
-
+    currentPage = 1;
 
     renderTable();
 
-
-    $("shownCount")
-        .textContent =
+    $("shownCount").textContent =
         filteredWorkers.length;
 
 }
 
-
-/* =========================================================
-   RENDER TABLE
-========================================================= */
 
 function renderTable(){
 
     const tbody =
         $("workerTable");
 
+    tbody.innerHTML = "";
 
-    tbody.innerHTML =
-        "";
-
-
-    if(
-        filteredWorkers.length
-        ===
-        0
-    ){
+    if(filteredWorkers.length === 0){
 
         tbody.innerHTML = `
 
@@ -2366,9 +1729,7 @@ function renderTable(){
                     colspan="10"
                     class="empty"
                 >
-
                     No records found.
-
                 </td>
 
             </tr>
@@ -2381,25 +1742,14 @@ function renderTable(){
 
     }
 
-
     const start =
-        (
-            currentPage
-            -
-            1
-        )
-        *
-        pageSize;
-
+        (currentPage - 1) * pageSize;
 
     const end =
         Math.min(
-            start
-            +
-            pageSize,
+            start + pageSize,
             filteredWorkers.length
         );
-
 
     const rows =
         filteredWorkers.slice(
@@ -2407,51 +1757,36 @@ function renderTable(){
             end
         );
 
-
     rows.forEach(
         worker => {
 
-
             const tr =
-                document.createElement(
-                    "tr"
-                );
-
+                document.createElement("tr");
 
             tr.innerHTML = `
 
                 <td>
-                    ${escapeHTML(
-                        worker.id
-                    )}
+                    ${escapeHTML(worker.id)}
                 </td>
 
                 <td>
                     ${escapeHTML(
-                        formatDate(
-                            worker.birth_date
-                        )
+                        formatDate(worker.birth_date)
                     )}
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        worker.age
-                    )}
+                    ${escapeHTML(worker.age)}
                 </td>
 
                 <td>
                     ${escapeHTML(
-                        formatDate(
-                            worker.date_of_joining
-                        )
+                        formatDate(worker.date_of_joining)
                     )}
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        worker.aabha_id
-                    )}
+                    ${escapeHTML(worker.aabha_id)}
                 </td>
 
                 <td>
@@ -2471,42 +1806,27 @@ function renderTable(){
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        worker.bank_name
-                    )}
+                    ${escapeHTML(worker.bank_name)}
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        worker.ifsc_code
-                    )}
+                    ${escapeHTML(worker.ifsc_code)}
                 </td>
 
                 <td>
 
-                    <div
-                        class="row-actions"
-                    >
+                    <div class="row-actions">
 
                         <button
                             class="btn btn-warning"
-                            onclick="openEdit(
-                                ${Number(
-                                    worker.id
-                                )}
-                            )"
+                            onclick="openEdit(${Number(worker.id)})"
                         >
                             Edit
                         </button>
 
-
                         <button
                             class="btn btn-danger"
-                            onclick="deleteWorker(
-                                ${Number(
-                                    worker.id
-                                )}
-                            )"
+                            onclick="deleteWorker(${Number(worker.id)})"
                         >
                             Delete
                         </button>
@@ -2517,113 +1837,69 @@ function renderTable(){
 
             `;
 
-
-            tbody.appendChild(
-                tr
-            );
+            tbody.appendChild(tr);
 
         }
     );
-
 
     updatePageInfo();
 
 }
 
 
-/* =========================================================
-   MASK SENSITIVE DATA
-========================================================= */
-
 function maskSensitive(value){
 
     if(!value){
-
         return "";
-
     }
 
+    const text = String(value);
 
-    const text =
-        String(value);
-
-
-    if(
-        text.length <= 4
-    ){
-
+    if(text.length <= 4){
         return "••••";
-
     }
 
-
-    return (
-        "••••••••"
-        +
-        text.slice(-4)
-    );
+    return "••••••••" + text.slice(-4);
 
 }
 
 
-/* =========================================================
-   STATISTICS
-========================================================= */
-
 function updateStats(){
 
-    $("totalCount")
-        .textContent =
+    $("totalCount").textContent =
         allWorkers.length;
 
-
-    $("shownCount")
-        .textContent =
+    $("shownCount").textContent =
         filteredWorkers.length;
-
 
     const abha =
         allWorkers.filter(
-            worker =>
-                worker.aabha_id
+            worker => worker.aabha_id
         ).length;
 
-
-    $("abhaCount")
-        .textContent =
+    $("abhaCount").textContent =
         abha;
-
 
     const bank =
         allWorkers.filter(
             worker =>
-                worker.bank_acc_no
-                &&
-                worker.bank_name
-                &&
+                worker.bank_acc_no &&
+                worker.bank_name &&
                 worker.ifsc_code
         ).length;
 
-
-    $("bankCount")
-        .textContent =
+    $("bankCount").textContent =
         bank;
 
 }
 
-
-/* =========================================================
-   PAGINATION
-========================================================= */
 
 function totalPages(){
 
     return Math.max(
         1,
         Math.ceil(
-            filteredWorkers.length
-            /
-            pageSize
+            filteredWorkers.length / pageSize
         )
     );
 
@@ -2632,14 +1908,10 @@ function totalPages(){
 
 function updatePageInfo(){
 
-    $("pageInfo")
-        .textContent =
-        "Page "
-        +
-        currentPage
-        +
-        " of "
-        +
+    $("pageInfo").textContent =
+        "Page " +
+        currentPage +
+        " of " +
         totalPages();
 
 }
@@ -2647,9 +1919,7 @@ function updatePageInfo(){
 
 function previousPage(){
 
-    if(
-        currentPage > 1
-    ){
+    if(currentPage > 1){
 
         currentPage--;
 
@@ -2662,11 +1932,7 @@ function previousPage(){
 
 function nextPage(){
 
-    if(
-        currentPage
-        <
-        totalPages()
-    ){
+    if(currentPage < totalPages()){
 
         currentPage++;
 
@@ -2682,23 +1948,14 @@ function changePageSize(){
     pageSize =
         Number(
             $("pageSize").value
-        )
-        ||
-        10;
+        ) || 10;
 
-
-    currentPage =
-        1;
-
+    currentPage = 1;
 
     renderTable();
 
 }
 
-
-/* =========================================================
-   REFRESH
-========================================================= */
 
 async function refreshData(){
 
@@ -2707,26 +1964,14 @@ async function refreshData(){
 }
 
 
-/* =========================================================
-   CSV EXPORT
-========================================================= */
-
 function csvEscape(value){
 
     const text =
-        String(
-            value ?? ""
-        );
-
+        String(value ?? "");
 
     return (
-        '"'
-        +
-        text.replaceAll(
-            '"',
-            '""'
-        )
-        +
+        '"' +
+        text.replaceAll('"','""') +
         '"'
     );
 
@@ -2735,88 +1980,55 @@ function csvEscape(value){
 
 function exportCSV(){
 
-    if(
-        filteredWorkers.length
-        ===
-        0
-    ){
+    if(filteredWorkers.length === 0){
 
-        alert(
-            "No records to export."
-        );
+        alert("No records to export.");
 
         return;
 
     }
 
-
     const headers = [
 
         "ID",
-
         "Birth Date",
-
         "Age",
-
         "Date of Joining",
-
         "ABHA ID",
-
         "Aadhaar Card No",
-
         "Bank Account No",
-
         "Bank Name",
-
         "IFSC Code"
 
     ];
 
-
     const lines = [];
-
 
     lines.push(
         headers
-        .map(
-            csvEscape
-        )
+        .map(csvEscape)
         .join(",")
     );
 
-
     filteredWorkers.forEach(
         worker => {
-
 
             lines.push(
 
                 [
 
                     worker.id,
-
                     worker.birth_date,
-
                     worker.age,
-
                     worker.date_of_joining,
-
                     worker.aabha_id,
-
                     worker.aadhar_card_no,
-
                     worker.bank_acc_no,
-
                     worker.bank_name,
-
                     worker.ifsc_code
 
                 ]
-
-                .map(
-                    csvEscape
-                )
-
+                .map(csvEscape)
                 .join(",")
 
             );
@@ -2824,12 +2036,10 @@ function exportCSV(){
         }
     );
 
-
     const blob =
         new Blob(
             [
-                "\ufeff"
-                +
+                "\ufeff" +
                 lines.join("\n")
             ],
             {
@@ -2838,62 +2048,35 @@ function exportCSV(){
             }
         );
 
-
     const url =
-        URL.createObjectURL(
-            blob
-        );
-
+        URL.createObjectURL(blob);
 
     const link =
-        document.createElement(
-            "a"
-        );
+        document.createElement("a");
 
-
-    link.href =
-        url;
-
+    link.href = url;
 
     link.download =
         "asha_workers.csv";
 
-
-    document.body.appendChild(
-        link
-    );
-
+    document.body.appendChild(link);
 
     link.click();
 
-
     link.remove();
 
-
-    URL.revokeObjectURL(
-        url
-    );
+    URL.revokeObjectURL(url);
 
 }
 
-
-/* =========================================================
-   KEYBOARD
-========================================================= */
 
 $("loginPassword")
     .addEventListener(
         "keydown",
         function(event){
 
-            if(
-                event.key
-                ===
-                "Enter"
-            ){
-
+            if(event.key === "Enter"){
                 login();
-
             }
 
         }
@@ -2904,23 +2087,13 @@ document.addEventListener(
     "keydown",
     function(event){
 
-        if(
-            event.key
-            ===
-            "Escape"
-        ){
-
+        if(event.key === "Escape"){
             closeEdit();
-
         }
 
     }
 );
 
-
-/* =========================================================
-   MODAL
-========================================================= */
 
 function closeEdit(){
 
@@ -2937,9 +2110,7 @@ $("editModal")
         function(event){
 
             if(
-                event.target.id
-                ===
-                "editModal"
+                event.target.id === "editModal"
             ){
 
                 closeEdit();
@@ -2950,17 +2121,10 @@ $("editModal")
     );
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
 supabaseClient
     .auth
     .onAuthStateChange(
-        function(
-            event,
-            session
-        ){
+        function(event,session){
 
             if(session){
 
@@ -2976,14 +2140,9 @@ supabaseClient
     );
 
 
-/* =========================================================
-   START
-========================================================= */
-
 checkSession();
 
 </script>
-
 
 </body>
 </html>
