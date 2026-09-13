@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ASHA Worker Management System</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-:root{
-    --primary:#123c69;
-    --secondary:#0b5cab;
-    --success:#198754;
-    --danger:#dc3545;
-    --warning:#f59e0b;
-    --light:#f4f7fb;
-    --white:#ffffff;
-    --text:#172033;
-    --muted:#667085;
-    --border:#d9dee7;
-}
 
 *{
     margin:0;
@@ -33,482 +17,414 @@
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--light);
-    color:var(--text);
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+    color:#222;
 }
 
-button,
-input,
-select{
-    font-family:inherit;
+/* LOGIN */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+}
+
+.login-box{
+    width:380px;
+    max-width:92%;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.login-box h1{
+    text-align:center;
+    margin-bottom:10px;
+    color:#1e3a8a;
+}
+
+.login-box p{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+input, select{
+    width:100%;
+    padding:11px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    margin-top:6px;
+    margin-bottom:14px;
+    font-size:14px;
+}
+
+label{
+    font-weight:bold;
+    font-size:14px;
 }
 
 button{
+    border:none;
+    padding:10px 16px;
+    border-radius:7px;
     cursor:pointer;
+    font-weight:bold;
+}
+
+.login-btn{
+    width:100%;
+    background:#1e3a8a;
+    color:white;
+    font-size:16px;
+}
+
+.login-btn:hover{
+    background:#172554;
 }
 
 .hidden{
     display:none !important;
 }
 
-.login-screen{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:linear-gradient(
-        135deg,
-        #123c69,
-        #0b5cab
-    );
-}
+/* HEADER */
 
-.login-card{
-    width:100%;
-    max-width:430px;
-    background:white;
-    border-radius:18px;
-    padding:32px;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
-}
-
-.login-card h1{
-    color:var(--primary);
-    margin-bottom:8px;
-}
-
-.login-card p{
-    color:var(--muted);
-    margin-bottom:25px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:6px;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.form-control{
-    width:100%;
-    padding:12px 13px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    outline:none;
-    background:#fff;
-}
-
-.form-control:focus{
-    border-color:var(--secondary);
-    box-shadow:0 0 0 3px rgba(11,92,171,.1);
-}
-
-.btn{
-    border:0;
-    border-radius:8px;
-    padding:11px 16px;
-    font-weight:bold;
-}
-
-.btn-primary{
-    background:var(--primary);
+.header{
+    background:#0f172a;
     color:white;
-}
-
-.btn-primary:hover{
-    background:#0d3155;
-}
-
-.btn-success{
-    background:var(--success);
-    color:white;
-}
-
-.btn-danger{
-    background:var(--danger);
-    color:white;
-}
-
-.btn-warning{
-    background:var(--warning);
-    color:white;
-}
-
-.btn-light{
-    background:#eef2f7;
-    color:#26364d;
-}
-
-.btn-block{
-    width:100%;
-}
-
-.app-header{
-    background:var(--primary);
-    color:white;
-    padding:17px 25px;
+    padding:18px 25px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.15);
+    gap:15px;
 }
 
-.brand h1{
-    font-size:23px;
+.header h1{
+    font-size:22px;
 }
 
-.brand small{
-    opacity:.85;
-}
-
-.header-actions{
-    display:flex;
-    gap:8px;
+.logout-btn{
+    background:#dc2626;
+    color:white;
 }
 
 .container{
-    width:95%;
     max-width:1500px;
-    margin:25px auto;
+    margin:auto;
+    padding:20px;
 }
+
+/* DASHBOARD */
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:17px;
-    margin-bottom:22px;
+    gap:15px;
+    margin-bottom:20px;
 }
 
 .stat{
     background:white;
-    border-radius:14px;
-    padding:21px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-.stat .label{
-    color:var(--muted);
-    font-size:13px;
-    font-weight:bold;
+.stat h3{
+    color:#64748b;
+    font-size:14px;
 }
 
-.stat .value{
-    color:var(--primary);
-    font-size:30px;
-    font-weight:800;
-    margin-top:7px;
+.stat strong{
+    display:block;
+    font-size:28px;
+    margin-top:8px;
+    color:#1e3a8a;
 }
 
-.panel{
+/* FORM */
+
+.card{
     background:white;
-    border-radius:14px;
-    padding:22px;
-    margin-bottom:22px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    margin-bottom:20px;
 }
 
-.panel-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.card h2{
     margin-bottom:18px;
+    color:#1e3a8a;
 }
 
-.panel-title h2{
-    color:var(--primary);
-    font-size:19px;
-}
-
-.grid{
+.form-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
+    gap:10px 15px;
 }
 
-.actions{
+.form-group{
+    min-width:0;
+}
+
+.form-actions{
+    margin-top:10px;
     display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:17px;
-}
-
-.notice{
-    background:#fff7e6;
-    border:1px solid #ffd591;
-    color:#7a4b00;
-    padding:12px;
-    border-radius:9px;
-    margin-bottom:17px;
-    font-size:13px;
-}
-
-.toolbar{
-    display:flex;
-    flex-wrap:wrap;
     gap:10px;
-    margin-bottom:17px;
 }
 
-.search{
-    flex:1;
-    min-width:250px;
+.primary{
+    background:#2563eb;
+    color:white;
 }
 
-.table-wrap{
-    width:100%;
+.secondary{
+    background:#64748b;
+    color:white;
+}
+
+/* SEARCH */
+
+.filter-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr auto;
+    gap:12px;
+    align-items:end;
+}
+
+.filter-grid input{
+    margin-bottom:0;
+}
+
+/* TABLE */
+
+.table-wrapper{
     overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1200px;
+    min-width:1600px;
 }
 
-th,
-td{
-    padding:12px 10px;
-    border-bottom:1px solid #e8ebf0;
+th, td{
+    border-bottom:1px solid #e5e7eb;
+    padding:11px 9px;
     text-align:left;
+    font-size:13px;
+    white-space:nowrap;
 }
 
 th{
-    background:#f5f7fa;
-    color:#344054;
-    font-size:12px;
-    text-transform:uppercase;
-}
-
-td{
-    font-size:13px;
+    background:#1e3a8a;
+    color:white;
+    position:sticky;
+    top:0;
 }
 
 tr:hover td{
-    background:#fafcff;
+    background:#f8fafc;
 }
 
-.row-actions{
+.action-btn{
+    padding:6px 9px;
+    font-size:12px;
+    margin-right:4px;
+}
+
+.edit-btn{
+    background:#f59e0b;
+    color:white;
+}
+
+.delete-btn{
+    background:#dc2626;
+    color:white;
+}
+
+/* PAGINATION */
+
+.pagination{
     display:flex;
-    gap:6px;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:20px;
 }
 
-.message{
-    padding:11px 13px;
-    border-radius:8px;
-    margin-top:12px;
-    display:none;
+.pagination button{
+    background:#1e3a8a;
+    color:white;
 }
 
-.message.show{
-    display:block;
+.pagination button:disabled{
+    background:#cbd5e1;
+    cursor:not-allowed;
 }
 
-.message.success{
-    background:#d1fae5;
-    color:#065f46;
+.page-info{
+    font-weight:bold;
 }
 
-.message.error{
-    background:#fee2e2;
-    color:#991b1b;
-}
+/* MODAL */
 
 .modal{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.55);
-    display:none;
-    justify-content:center;
+    display:flex;
     align-items:center;
+    justify-content:center;
     padding:20px;
     z-index:1000;
 }
 
-.modal.show{
-    display:flex;
-}
-
-.modal-card{
-    width:100%;
-    max-width:850px;
-    max-height:92vh;
-    overflow:auto;
+.modal-content{
+    width:900px;
+    max-width:100%;
+    max-height:90vh;
+    overflow-y:auto;
     background:white;
-    border-radius:16px;
-    padding:23px;
+    border-radius:15px;
+    padding:25px;
 }
 
-.modal-head{
+.modal-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:20px;
 }
 
-.close{
-    background:none;
-    border:0;
-    font-size:28px;
-    color:#667085;
+.close-btn{
+    background:#e5e7eb;
+    font-size:20px;
 }
 
-.pagination{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:17px;
+/* MESSAGE */
+
+.message{
+    padding:10px 14px;
+    border-radius:7px;
+    margin-bottom:15px;
+    display:none;
 }
 
-.empty{
-    text-align:center;
-    padding:35px;
-    color:var(--muted);
+.success{
+    background:#dcfce7;
+    color:#166534;
 }
 
-.footer{
-    text-align:center;
-    color:var(--muted);
-    font-size:12px;
-    padding:25px;
+.error{
+    background:#fee2e2;
+    color:#991b1b;
 }
 
-@media(max-width:1100px){
+/* MOBILE */
+
+@media(max-width:1000px){
 
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .grid{
+    .form-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .filter-grid{
+        grid-template-columns:1fr 1fr;
+    }
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
 
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .app-header{
+    .header{
         flex-direction:column;
         align-items:flex-start;
-        gap:12px;
     }
 
-    .header-actions{
-        width:100%;
+    .stats{
+        grid-template-columns:1fr;
     }
 
-    .header-actions button{
-        flex:1;
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .filter-grid{
+        grid-template-columns:1fr;
     }
 
     .container{
-        width:96%;
-    }
-
-    .panel{
-        padding:15px;
+        padding:10px;
     }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div id="loginScreen" class="login-screen">
 
-    <div class="login-card">
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-box">
 
         <h1>ASHA Worker</h1>
 
-        <p>Administrator Login</p>
+        <p>Management System</p>
 
-        <div class="form-group">
+        <div id="loginMessage" class="message"></div>
 
-            <label>Email</label>
+        <label>Email</label>
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter email"
+        >
 
-            <input
-                id="loginEmail"
-                class="form-control"
-                type="email"
-                placeholder="Admin email"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Password</label>
-
-            <input
-                id="loginPassword"
-                class="form-control"
-                type="password"
-                placeholder="Password"
-            >
-
-        </div>
+        <label>Password</label>
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter password"
+        >
 
         <button
-            id="loginBtn"
-            class="btn btn-primary btn-block"
+            class="login-btn"
             onclick="login()"
         >
             Login
         </button>
-
-        <div
-            id="loginMessage"
-            class="message"
-        ></div>
 
     </div>
 
 </div>
 
 
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
+
 <div id="app" class="hidden">
 
-<header class="app-header">
+    <div class="header">
 
-    <div class="brand">
-
-        <h1>
-            ASHA Worker Management System
-        </h1>
-
-        <small>
-            Digital Health Worker Management
-        </small>
-
-    </div>
-
-    <div class="header-actions">
+        <h1>ASHA Worker Management System</h1>
 
         <button
-            class="btn btn-light"
-            onclick="refreshData()"
-        >
-            Refresh
-        </button>
-
-        <button
-            class="btn btn-danger"
+            class="logout-btn"
             onclick="logout()"
         >
             Logout
@@ -516,479 +432,656 @@ tr:hover td{
 
     </div>
 
-</header>
+
+    <div class="container">
 
 
-<main class="container">
+        <!-- MESSAGE -->
 
-<section class="stats">
+        <div id="mainMessage" class="message"></div>
 
-    <div class="stat">
 
-        <div class="label">
-            TOTAL WORKERS
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3>Total Workers</h3>
+                <strong id="totalCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <h3>Shown Records</h3>
+                <strong id="shownCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <h3>ABHA Details</h3>
+                <strong id="abhaCount">0</strong>
+            </div>
+
+            <div class="stat">
+                <h3>Bank Details</h3>
+                <strong id="bankCount">0</strong>
+            </div>
+
         </div>
 
-        <div id="totalCount" class="value">
-            0
+
+        <!-- =================================================
+             ADD WORKER
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>Add ASHA Worker</h2>
+
+            <form id="workerForm">
+
+                <div class="form-grid">
+
+
+                    <!-- WORKER NAME -->
+
+                    <div class="form-group">
+
+                        <label>Worker Name</label>
+
+                        <input
+                            type="text"
+                            id="worker_name"
+                            placeholder="Enter worker name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- POPULATION -->
+
+                    <div class="form-group">
+
+                        <label>Population</label>
+
+                        <input
+                            type="number"
+                            id="population"
+                            min="0"
+                            placeholder="Enter population"
+                        >
+
+                    </div>
+
+
+                    <!-- HOUSES -->
+
+                    <div class="form-group">
+
+                        <label>Houses</label>
+
+                        <input
+                            type="number"
+                            id="houses"
+                            min="0"
+                            placeholder="Enter number of houses"
+                        >
+
+                    </div>
+
+
+                    <!-- MOBILE -->
+
+                    <div class="form-group">
+
+                        <label>Mobile Number</label>
+
+                        <input
+                            type="tel"
+                            id="mobile_number"
+                            maxlength="10"
+                            placeholder="10 digit mobile number"
+                        >
+
+                    </div>
+
+
+                    <!-- WORK AREA -->
+
+                    <div class="form-group">
+
+                        <label>कार्य क्षेत्र / Work Area</label>
+
+                        <input
+                            type="text"
+                            id="work_area"
+                            placeholder="Enter work area"
+                        >
+
+                    </div>
+
+
+                    <!-- BIRTH DATE -->
+
+                    <div class="form-group">
+
+                        <label>Birth Date</label>
+
+                        <input
+                            type="date"
+                            id="birth_date"
+                        >
+
+                    </div>
+
+
+                    <!-- AGE -->
+
+                    <div class="form-group">
+
+                        <label>Age</label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            readonly
+                            placeholder="Auto calculated"
+                        >
+
+                    </div>
+
+
+                    <!-- JOINING DATE -->
+
+                    <div class="form-group">
+
+                        <label>Date of Joining</label>
+
+                        <input
+                            type="date"
+                            id="date_of_joining"
+                        >
+
+                    </div>
+
+
+                    <!-- ABHA -->
+
+                    <div class="form-group">
+
+                        <label>ABHA ID</label>
+
+                        <input
+                            type="text"
+                            id="aabha_id"
+                            placeholder="Enter ABHA ID"
+                        >
+
+                    </div>
+
+
+                    <!-- AADHAAR -->
+
+                    <div class="form-group">
+
+                        <label>Aadhaar Card No.</label>
+
+                        <input
+                            type="text"
+                            id="aadhar_card_no"
+                            maxlength="12"
+                            placeholder="12 digit Aadhaar"
+                        >
+
+                    </div>
+
+
+                    <!-- BANK ACCOUNT -->
+
+                    <div class="form-group">
+
+                        <label>Bank Account No.</label>
+
+                        <input
+                            type="text"
+                            id="bank_acc_no"
+                            placeholder="Enter account number"
+                        >
+
+                    </div>
+
+
+                    <!-- BANK NAME -->
+
+                    <div class="form-group">
+
+                        <label>Bank Name</label>
+
+                        <input
+                            type="text"
+                            id="bank_name"
+                            placeholder="Enter bank name"
+                        >
+
+                    </div>
+
+
+                    <!-- IFSC -->
+
+                    <div class="form-group">
+
+                        <label>IFSC Code</label>
+
+                        <input
+                            type="text"
+                            id="ifsc_code"
+                            placeholder="Enter IFSC"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary"
+                    >
+                        Add Worker
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary"
+                        onclick="resetForm()"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             SEARCH / FILTER
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>Search & Filter</h2>
+
+            <div class="filter-grid">
+
+                <div>
+
+                    <label>Search</label>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search name, mobile, area, Aadhaar..."
+                        oninput="applyFilters()"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Joining From</label>
+
+                    <input
+                        type="date"
+                        id="fromDate"
+                        onchange="applyFilters()"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Joining To</label>
+
+                    <input
+                        type="date"
+                        id="toDate"
+                        onchange="applyFilters()"
+                    >
+
+                </div>
+
+
+                <button
+                    class="secondary"
+                    onclick="clearFilters()"
+                >
+                    Clear Filters
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             WORKER LIST
+        ================================================== -->
+
+        <div class="card">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:10px;
+                margin-bottom:15px;
+                flex-wrap:wrap;
+            ">
+
+                <h2 style="margin:0;">
+                    ASHA Workers
+                </h2>
+
+                <button
+                    class="primary"
+                    onclick="exportCSV()"
+                >
+                    Export CSV
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Worker Name</th>
+                            <th>Population</th>
+                            <th>Houses</th>
+                            <th>Mobile Number</th>
+                            <th>Work Area</th>
+                            <th>Birth Date</th>
+                            <th>Age</th>
+                            <th>Joining Date</th>
+                            <th>ABHA ID</th>
+                            <th>Aadhaar</th>
+                            <th>Bank Account</th>
+                            <th>Bank Name</th>
+                            <th>IFSC</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="workerTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- PAGINATION -->
+
+            <div class="pagination">
+
+                <button
+                    id="prevBtn"
+                    onclick="previousPage()"
+                >
+                    Previous
+                </button>
+
+                <span
+                    class="page-info"
+                    id="pageInfo"
+                >
+                    Page 1
+                </span>
+
+                <button
+                    id="nextBtn"
+                    onclick="nextPage()"
+                >
+                    Next
+                </button>
+
+            </div>
+
         </div>
 
     </div>
 
-    <div class="stat">
-
-        <div class="label">
-            RECORDS SHOWN
-        </div>
-
-        <div id="shownCount" class="value">
-            0
-        </div>
-
-    </div>
-
-    <div class="stat">
-
-        <div class="label">
-            WITH ABHA ID
-        </div>
-
-        <div id="abhaCount" class="value">
-            0
-        </div>
-
-    </div>
-
-    <div class="stat">
-
-        <div class="label">
-            BANK DETAILS
-        </div>
-
-        <div id="bankCount" class="value">
-            0
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="panel">
-
-    <div class="panel-title">
-
-        <h2>
-            Add ASHA Worker
-        </h2>
-
-    </div>
-
-    <div class="notice">
-
-        Aadhaar and bank details are sensitive.
-        Keep Supabase Row Level Security enabled.
-
-    </div>
-
-    <div class="grid">
-
-        <div class="form-group">
-
-            <label>Birth Date</label>
-
-            <input
-                id="birth_date"
-                class="form-control"
-                type="date"
-                onchange="calculateAge('birth_date','age')"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Age</label>
-
-            <input
-                id="age"
-                class="form-control"
-                type="number"
-                readonly
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Date of Joining</label>
-
-            <input
-                id="date_of_joining"
-                class="form-control"
-                type="date"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>ABHA ID</label>
-
-            <input
-                id="aabha_id"
-                class="form-control"
-                type="text"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Aadhaar Card No.</label>
-
-            <input
-                id="aadhar_card_no"
-                class="form-control"
-                type="text"
-                inputmode="numeric"
-                maxlength="12"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Bank Account No.</label>
-
-            <input
-                id="bank_acc_no"
-                class="form-control"
-                type="text"
-                inputmode="numeric"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Bank Name</label>
-
-            <input
-                id="bank_name"
-                class="form-control"
-                type="text"
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>IFSC Code</label>
-
-            <input
-                id="ifsc_code"
-                class="form-control"
-                type="text"
-            >
-
-        </div>
-
-    </div>
-
-    <div class="actions">
-
-        <button
-            class="btn btn-success"
-            onclick="addWorker()"
-        >
-            + Add Worker
-        </button>
-
-        <button
-            class="btn btn-light"
-            onclick="clearForm()"
-        >
-            Clear
-        </button>
-
-    </div>
-
-    <div id="formMessage" class="message"></div>
-
-</section>
-
-
-<section class="panel">
-
-    <div class="panel-title">
-
-        <h2>
-            ASHA Worker Records
-        </h2>
-
-        <button
-            class="btn btn-primary"
-            onclick="exportCSV()"
-        >
-            Export CSV
-        </button>
-
-    </div>
-
-    <div class="toolbar">
-
-        <input
-            id="searchBox"
-            class="form-control search"
-            placeholder="Search records..."
-            oninput="applyFilters()"
-        >
-
-        <input
-            id="joinFrom"
-            class="form-control"
-            type="date"
-            onchange="applyFilters()"
-        >
-
-        <input
-            id="joinTo"
-            class="form-control"
-            type="date"
-            onchange="applyFilters()"
-        >
-
-        <select
-            id="pageSize"
-            class="form-control"
-            onchange="changePageSize()"
-        >
-
-            <option value="10">10 rows</option>
-            <option value="25">25 rows</option>
-            <option value="50">50 rows</option>
-            <option value="100">100 rows</option>
-
-        </select>
-
-    </div>
-
-    <div class="table-wrap">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>ID</th>
-                    <th>Birth Date</th>
-                    <th>Age</th>
-                    <th>Joining Date</th>
-                    <th>ABHA ID</th>
-                    <th>Aadhaar</th>
-                    <th>Bank Account</th>
-                    <th>Bank Name</th>
-                    <th>IFSC</th>
-                    <th>Actions</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="workerTable"></tbody>
-
-        </table>
-
-    </div>
-
-    <div class="pagination">
-
-        <button
-            class="btn btn-light"
-            onclick="previousPage()"
-        >
-            Previous
-        </button>
-
-        <span id="pageInfo">
-            Page 1
-        </span>
-
-        <button
-            class="btn btn-light"
-            onclick="nextPage()"
-        >
-            Next
-        </button>
-
-    </div>
-
-</section>
-
-
-<div class="footer">
-    ASHA Worker Management System
 </div>
 
-</main>
 
-</div>
+<!-- =====================================================
+     EDIT MODAL
+===================================================== -->
 
+<div
+    id="editModal"
+    class="modal hidden"
+>
 
-<div id="editModal" class="modal">
+    <div class="modal-content">
 
-    <div class="modal-card">
+        <div class="modal-header">
 
-        <div class="modal-head">
-
-            <h2>
-                Edit ASHA Worker
-            </h2>
+            <h2>Edit ASHA Worker</h2>
 
             <button
-                class="close"
-                onclick="closeEdit()"
+                class="close-btn"
+                onclick="closeEditModal()"
             >
                 ×
             </button>
 
         </div>
 
+
         <input
-            id="edit_id"
             type="hidden"
+            id="edit_id"
         >
 
-        <div class="grid">
 
-            <div class="form-group">
+        <div class="form-grid">
 
-                <label>Birth Date</label>
+
+            <div>
+
+                <label>Worker Name</label>
 
                 <input
-                    id="edit_birth_date"
-                    class="form-control"
-                    type="date"
-                    onchange="calculateAge(
-                        'edit_birth_date',
-                        'edit_age'
-                    )"
+                    type="text"
+                    id="edit_worker_name"
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
+
+                <label>Population</label>
+
+                <input
+                    type="number"
+                    id="edit_population"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Houses</label>
+
+                <input
+                    type="number"
+                    id="edit_houses"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Mobile Number</label>
+
+                <input
+                    type="tel"
+                    id="edit_mobile_number"
+                    maxlength="10"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>कार्य क्षेत्र / Work Area</label>
+
+                <input
+                    type="text"
+                    id="edit_work_area"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Birth Date</label>
+
+                <input
+                    type="date"
+                    id="edit_birth_date"
+                >
+
+            </div>
+
+
+            <div>
 
                 <label>Age</label>
 
                 <input
-                    id="edit_age"
-                    class="form-control"
                     type="number"
+                    id="edit_age"
                     readonly
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
 
                 <label>Date of Joining</label>
 
                 <input
-                    id="edit_date_of_joining"
-                    class="form-control"
                     type="date"
+                    id="edit_date_of_joining"
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
 
                 <label>ABHA ID</label>
 
                 <input
-                    id="edit_aabha_id"
-                    class="form-control"
                     type="text"
+                    id="edit_aabha_id"
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
 
                 <label>Aadhaar Card No.</label>
 
                 <input
-                    id="edit_aadhar_card_no"
-                    class="form-control"
                     type="text"
+                    id="edit_aadhar_card_no"
                     maxlength="12"
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
 
                 <label>Bank Account No.</label>
 
                 <input
-                    id="edit_bank_acc_no"
-                    class="form-control"
                     type="text"
+                    id="edit_bank_acc_no"
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
 
                 <label>Bank Name</label>
 
                 <input
-                    id="edit_bank_name"
-                    class="form-control"
                     type="text"
+                    id="edit_bank_name"
                 >
 
             </div>
 
-            <div class="form-group">
+
+            <div>
 
                 <label>IFSC Code</label>
 
                 <input
-                    id="edit_ifsc_code"
-                    class="form-control"
                     type="text"
+                    id="edit_ifsc_code"
                 >
 
             </div>
 
         </div>
 
-        <div class="actions">
+
+        <div class="form-actions">
 
             <button
-                class="btn btn-success"
+                class="primary"
                 onclick="updateWorker()"
             >
                 Save Changes
             </button>
 
             <button
-                class="btn btn-light"
-                onclick="closeEdit()"
+                class="secondary"
+                onclick="closeEditModal()"
             >
                 Cancel
             </button>
 
         </div>
-
-        <div
-            id="editMessage"
-            class="message"
-        ></div>
 
     </div>
 
@@ -996,6 +1089,10 @@ tr:hover td{
 
 
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
     "https://dosftayxhqvwqnutrbge.supabase.co";
@@ -1010,133 +1107,84 @@ const supabaseClient =
     );
 
 
-let allWorkers = [];
-let filteredWorkers = [];
-let currentPage = 1;
-let pageSize = 10;
+/* =====================================================
+   VARIABLES
+===================================================== */
 
+let workers = [];
+
+let filteredWorkers = [];
+
+let currentPage = 1;
+
+const rowsPerPage = 10;
+
+
+/* =====================================================
+   HELPER
+===================================================== */
 
 function $(id){
+
     return document.getElementById(id);
-}
-
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
 
 }
 
 
-function showMessage(id,text,type){
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-    const element = $(id);
+function showMessage(
+    message,
+    type = "success"
+){
 
-    element.textContent = text;
+    const box = $("mainMessage");
 
-    element.className =
-        "message show " + type;
+    box.textContent = message;
 
-}
+    box.className =
+        "message " + type;
 
+    box.style.display = "block";
 
-function hideMessage(id){
-
-    const element = $(id);
-
-    element.className = "message";
-
-    element.textContent = "";
-
-}
-
-
-function normalizeDate(value){
-
-    if(!value){
-        return "";
-    }
-
-    return String(value).slice(0,10);
+    setTimeout(
+        () => {
+            box.style.display = "none";
+        },
+        3500
+    );
 
 }
 
 
-function formatDate(value){
+/* =====================================================
+   LOGIN MESSAGE
+===================================================== */
 
-    if(!value){
-        return "";
-    }
+function showLoginMessage(
+    message,
+    type = "error"
+){
 
-    const date =
-        new Date(
-            value + "T00:00:00"
-        );
+    const box = $("loginMessage");
 
-    if(Number.isNaN(date.getTime())){
-        return value;
-    }
+    box.textContent = message;
 
-    return date.toLocaleDateString("en-IN");
+    box.className =
+        "message " + type;
 
-}
-
-
-function calculateAge(dateId,ageId){
-
-    const value = $(dateId).value;
-
-    if(!value){
-
-        $(ageId).value = "";
-
-        return;
-
-    }
-
-    const birth =
-        new Date(
-            value + "T00:00:00"
-        );
-
-    const today = new Date();
-
-    let age =
-        today.getFullYear()
-        -
-        birth.getFullYear();
-
-    const month =
-        today.getMonth()
-        -
-        birth.getMonth();
-
-    if(
-        month < 0 ||
-        (
-            month === 0 &&
-            today.getDate() < birth.getDate()
-        )
-    ){
-
-        age--;
-
-    }
-
-    $(ageId).value =
-        age >= 0 ? age : "";
+    box.style.display = "block";
 
 }
 
+
+/* =====================================================
+   LOGIN
+===================================================== */
 
 async function login(){
-
-    hideMessage("loginMessage");
 
     const email =
         $("loginEmail").value.trim();
@@ -1146,116 +1194,76 @@ async function login(){
 
     if(!email || !password){
 
-        showMessage(
-            "loginMessage",
-            "Enter email and password.",
-            "error"
+        showLoginMessage(
+            "Please enter email and password."
         );
 
         return;
 
     }
-
-    $("loginBtn").disabled = true;
-    $("loginBtn").textContent = "Logging in...";
 
     const {
         data,
         error
     } =
-        await supabaseClient
-        .auth
-        .signInWithPassword({
+        await supabaseClient.auth.signInWithPassword({
+
             email:email,
             password:password
+
         });
 
-    $("loginBtn").disabled = false;
-    $("loginBtn").textContent = "Login";
 
     if(error){
 
-        showMessage(
-            "loginMessage",
-            error.message,
-            "error"
+        showLoginMessage(
+            error.message
         );
 
         return;
 
     }
 
-    if(!data.session){
+    $("loginPage").classList.add("hidden");
 
-        showMessage(
-            "loginMessage",
-            "Login failed.",
-            "error"
-        );
-
-        return;
-
-    }
-
-    showApp();
+    $("app").classList.remove("hidden");
 
     await loadWorkers();
 
 }
 
 
-function showApp(){
-
-    $("loginScreen")
-        .classList
-        .add("hidden");
-
-    $("app")
-        .classList
-        .remove("hidden");
-
-}
-
-
-function hideApp(){
-
-    $("app")
-        .classList
-        .add("hidden");
-
-    $("loginScreen")
-        .classList
-        .remove("hidden");
-
-}
-
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 async function logout(){
 
-    await supabaseClient
-        .auth
-        .signOut();
+    await supabaseClient.auth.signOut();
 
-    hideApp();
+    $("app").classList.add("hidden");
+
+    $("loginPage").classList.remove("hidden");
 
 }
 
+
+/* =====================================================
+   SESSION
+===================================================== */
 
 async function checkSession(){
 
     const {
         data
     } =
-        await supabaseClient
-        .auth
-        .getSession();
+        await supabaseClient.auth.getSession();
 
-    if(
-        data &&
-        data.session
-    ){
+    if(data.session){
 
-        showApp();
+        $("loginPage").classList.add("hidden");
+
+        $("app").classList.remove("hidden");
 
         await loadWorkers();
 
@@ -1264,9 +1272,9 @@ async function checkSession(){
 }
 
 
-/* =========================================================
-   DATABASE TABLE: aasha_workers
-========================================================= */
+/* =====================================================
+   LOAD WORKERS
+===================================================== */
 
 async function loadWorkers(){
 
@@ -1284,13 +1292,14 @@ async function loadWorkers(){
             }
         );
 
+
     if(error){
 
         console.error(error);
 
         showMessage(
-            "formMessage",
-            "Database error: " + error.message,
+            "Error loading workers: " +
+            error.message,
             "error"
         );
 
@@ -1298,481 +1307,538 @@ async function loadWorkers(){
 
     }
 
-    allWorkers = data || [];
+
+    workers = data || [];
 
     applyFilters();
 
-    updateStats();
-
 }
 
+
+/* =====================================================
+   GET FORM DATA
+===================================================== */
 
 function getFormData(){
 
     return {
 
+        worker_name:
+            $("worker_name").value.trim() ||
+            null,
+
+        population:
+            $("population").value !== ""
+                ? Number($("population").value)
+                : null,
+
+        houses:
+            $("houses").value !== ""
+                ? Number($("houses").value)
+                : null,
+
+        mobile_number:
+            $("mobile_number").value.trim() ||
+            null,
+
+        work_area:
+            $("work_area").value.trim() ||
+            null,
+
         birth_date:
-            $("birth_date").value || null,
+            $("birth_date").value ||
+            null,
 
         age:
             $("age").value
-            ?
-            Number($("age").value)
-            :
-            null,
+                ? Number($("age").value)
+                : null,
 
         date_of_joining:
-            $("date_of_joining").value || null,
+            $("date_of_joining").value ||
+            null,
 
         aabha_id:
-            $("aabha_id").value.trim() || null,
+            $("aabha_id").value.trim() ||
+            null,
 
         aadhar_card_no:
-            $("aadhar_card_no").value.trim() || null,
+            $("aadhar_card_no").value.trim() ||
+            null,
 
         bank_acc_no:
-            $("bank_acc_no").value.trim() || null,
+            $("bank_acc_no").value.trim() ||
+            null,
 
         bank_name:
-            $("bank_name").value.trim() || null,
+            $("bank_name").value.trim() ||
+            null,
 
         ifsc_code:
-            $("ifsc_code").value.trim().toUpperCase() || null
+            $("ifsc_code")
+                .value
+                .trim()
+                .toUpperCase() ||
+            null
 
     };
 
 }
 
 
-function validateWorker(data){
+/* =====================================================
+   VALIDATE FORM
+===================================================== */
+
+function validateData(data){
+
+    if(
+        data.mobile_number &&
+        !/^\d{10}$/.test(data.mobile_number)
+    ){
+
+        alert(
+            "Mobile number must contain exactly 10 digits."
+        );
+
+        return false;
+
+    }
+
 
     if(
         data.aadhar_card_no &&
-        !/^\d{12}$/.test(
-            data.aadhar_card_no
+        !/^\d{12}$/.test(data.aadhar_card_no)
+    ){
+
+        alert(
+            "Aadhaar number must contain exactly 12 digits."
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        data.population !== null &&
+        data.population < 0
+    ){
+
+        alert(
+            "Population cannot be negative."
+        );
+
+        return false;
+
+    }
+
+
+    if(
+        data.houses !== null &&
+        data.houses < 0
+    ){
+
+        alert(
+            "Houses cannot be negative."
+        );
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   ADD WORKER
+===================================================== */
+
+$("workerForm").addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
+
+        const formData =
+            getFormData();
+
+
+        if(!validateData(formData)){
+            return;
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .from("aasha_workers")
+            .insert([formData])
+            .select();
+
+
+        if(error){
+
+            console.error(error);
+
+            showMessage(
+                "Error adding worker: " +
+                error.message,
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        showMessage(
+            "Worker added successfully."
+        );
+
+        resetForm();
+
+        await loadWorkers();
+
+    }
+);
+
+
+/* =====================================================
+   RESET FORM
+===================================================== */
+
+function resetForm(){
+
+    $("workerForm").reset();
+
+    $("age").value = "";
+
+}
+
+
+/* =====================================================
+   AGE CALCULATION
+===================================================== */
+
+function calculateAgeFromDate(
+    date
+){
+
+    if(!date){
+        return "";
+    }
+
+    const birth =
+        new Date(date);
+
+    const today =
+        new Date();
+
+    let age =
+        today.getFullYear() -
+        birth.getFullYear();
+
+    const month =
+        today.getMonth() -
+        birth.getMonth();
+
+    if(
+        month < 0 ||
+        (
+            month === 0 &&
+            today.getDate() < birth.getDate()
         )
     ){
 
-        return "Aadhaar number must contain 12 digits.";
+        age--;
 
     }
 
-    if(
-        data.birth_date &&
-        data.date_of_joining &&
-        data.date_of_joining < data.birth_date
-    ){
-
-        return "Date of joining cannot be before birth date.";
-
-    }
-
-    if(
-        data.age !== null &&
-        data.age < 0
-    ){
-
-        return "Age cannot be negative.";
-
-    }
-
-    return "";
+    return age >= 0
+        ? age
+        : "";
 
 }
 
 
-async function addWorker(){
+$("birth_date").addEventListener(
+    "change",
+    function(){
 
-    hideMessage("formMessage");
-
-    const data = getFormData();
-
-    const validation =
-        validateWorker(data);
-
-    if(validation){
-
-        showMessage(
-            "formMessage",
-            validation,
-            "error"
-        );
-
-        return;
+        $("age").value =
+            calculateAgeFromDate(
+                this.value
+            );
 
     }
+);
 
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("aasha_workers")
-        .insert([
-            data
-        ]);
 
-    if(error){
+$("edit_birth_date").addEventListener(
+    "change",
+    function(){
 
-        console.error(error);
-
-        showMessage(
-            "formMessage",
-            "Insert error: " + error.message,
-            "error"
-        );
-
-        return;
+        $("edit_age").value =
+            calculateAgeFromDate(
+                this.value
+            );
 
     }
+);
 
-    showMessage(
-        "formMessage",
-        "Worker added successfully.",
-        "success"
-    );
 
-    clearForm();
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-    await loadWorkers();
+function escapeHTML(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
-function clearForm(){
+/* =====================================================
+   MASK DATA
+===================================================== */
 
-    $("birth_date").value = "";
-    $("age").value = "";
-    $("date_of_joining").value = "";
-    $("aabha_id").value = "";
-    $("aadhar_card_no").value = "";
-    $("bank_acc_no").value = "";
-    $("bank_name").value = "";
-    $("ifsc_code").value = "";
+function maskAadhaar(value){
+
+    if(!value){
+        return "";
+    }
+
+    const str =
+        String(value);
+
+    if(str.length <= 4){
+        return str;
+    }
+
+    return "XXXX XXXX " +
+        str.slice(-4);
 
 }
 
 
-function openEdit(id){
+function maskBank(value){
 
-    const worker =
-        allWorkers.find(
-            item =>
-                Number(item.id) === Number(id)
-        );
-
-    if(!worker){
-
-        alert("Worker not found.");
-
-        return;
-
+    if(!value){
+        return "";
     }
 
-    $("edit_id").value =
-        worker.id ?? "";
+    const str =
+        String(value);
 
-    $("edit_birth_date").value =
-        normalizeDate(
-            worker.birth_date
-        );
+    if(str.length <= 4){
+        return str;
+    }
 
-    $("edit_age").value =
-        worker.age ?? "";
-
-    $("edit_date_of_joining").value =
-        normalizeDate(
-            worker.date_of_joining
-        );
-
-    $("edit_aabha_id").value =
-        worker.aabha_id ?? "";
-
-    $("edit_aadhar_card_no").value =
-        worker.aadhar_card_no ?? "";
-
-    $("edit_bank_acc_no").value =
-        worker.bank_acc_no ?? "";
-
-    $("edit_bank_name").value =
-        worker.bank_name ?? "";
-
-    $("edit_ifsc_code").value =
-        worker.ifsc_code ?? "";
-
-    hideMessage("editMessage");
-
-    $("editModal")
-        .classList
-        .add("show");
+    return "XXXXXX" +
+        str.slice(-4);
 
 }
 
 
-async function updateWorker(){
-
-    hideMessage("editMessage");
-
-    const id =
-        $("edit_id").value;
-
-    const data = {
-
-        birth_date:
-            $("edit_birth_date").value || null,
-
-        age:
-            $("edit_age").value
-            ?
-            Number($("edit_age").value)
-            :
-            null,
-
-        date_of_joining:
-            $("edit_date_of_joining").value || null,
-
-        aabha_id:
-            $("edit_aabha_id").value.trim() || null,
-
-        aadhar_card_no:
-            $("edit_aadhar_card_no").value.trim() || null,
-
-        bank_acc_no:
-            $("edit_bank_acc_no").value.trim() || null,
-
-        bank_name:
-            $("edit_bank_name").value.trim() || null,
-
-        ifsc_code:
-            $("edit_ifsc_code").value.trim().toUpperCase() || null
-
-    };
-
-    const validation =
-        validateWorker(data);
-
-    if(validation){
-
-        showMessage(
-            "editMessage",
-            validation,
-            "error"
-        );
-
-        return;
-
-    }
-
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("aasha_workers")
-        .update(data)
-        .eq("id",id);
-
-    if(error){
-
-        showMessage(
-            "editMessage",
-            "Update error: " + error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-    closeEdit();
-
-    await loadWorkers();
-
-    showMessage(
-        "formMessage",
-        "Worker updated successfully.",
-        "success"
-    );
-
-}
-
-
-async function deleteWorker(id){
-
-    const yes =
-        confirm(
-            "Are you sure you want to delete this record?"
-        );
-
-    if(!yes){
-        return;
-    }
-
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("aasha_workers")
-        .delete()
-        .eq("id",id);
-
-    if(error){
-
-        alert(
-            "Delete error: " + error.message
-        );
-
-        return;
-
-    }
-
-    await loadWorkers();
-
-}
-
+/* =====================================================
+   APPLY FILTERS
+===================================================== */
 
 function applyFilters(){
 
     const search =
-        $("searchBox")
+        $("searchInput")
         .value
         .trim()
         .toLowerCase();
 
     const from =
-        $("joinFrom").value;
+        $("fromDate").value;
 
     const to =
-        $("joinTo").value;
+        $("toDate").value;
+
 
     filteredWorkers =
-        allWorkers.filter(
+        workers.filter(
             worker => {
 
-                const text = [
+                const searchable = [
 
-                    worker.id,
+                    worker.worker_name,
+
+                    worker.population,
+
+                    worker.houses,
+
+                    worker.mobile_number,
+
+                    worker.work_area,
+
                     worker.birth_date,
+
                     worker.age,
+
                     worker.date_of_joining,
+
                     worker.aabha_id,
+
                     worker.aadhar_card_no,
+
                     worker.bank_acc_no,
+
                     worker.bank_name,
+
                     worker.ifsc_code
 
                 ]
                 .join(" ")
                 .toLowerCase();
 
-                if(
-                    search &&
-                    !text.includes(search)
-                ){
 
-                    return false;
+                const matchesSearch =
+                    !search ||
+                    searchable.includes(search);
 
-                }
 
-                const joining =
-                    normalizeDate(
-                        worker.date_of_joining
+                const joiningDate =
+                    worker.date_of_joining;
+
+
+                const matchesFrom =
+                    !from ||
+                    (
+                        joiningDate &&
+                        joiningDate >= from
                     );
 
-                if(
-                    from &&
-                    joining &&
-                    joining < from
-                ){
 
-                    return false;
+                const matchesTo =
+                    !to ||
+                    (
+                        joiningDate &&
+                        joiningDate <= to
+                    );
 
-                }
 
-                if(
-                    to &&
-                    joining &&
-                    joining > to
-                ){
-
-                    return false;
-
-                }
-
-                return true;
+                return (
+                    matchesSearch &&
+                    matchesFrom &&
+                    matchesTo
+                );
 
             }
         );
+
 
     currentPage = 1;
 
     renderTable();
 
-    $("shownCount").textContent =
-        filteredWorkers.length;
+}
+
+
+/* =====================================================
+   CLEAR FILTERS
+===================================================== */
+
+function clearFilters(){
+
+    $("searchInput").value = "";
+
+    $("fromDate").value = "";
+
+    $("toDate").value = "";
+
+    applyFilters();
 
 }
 
 
+/* =====================================================
+   RENDER TABLE
+===================================================== */
+
 function renderTable(){
 
     const tbody =
-        $("workerTable");
+        $("workerTableBody");
 
     tbody.innerHTML = "";
 
-    if(filteredWorkers.length === 0){
 
-        tbody.innerHTML = `
+    const total =
+        filteredWorkers.length;
 
-            <tr>
-
-                <td
-                    colspan="10"
-                    class="empty"
-                >
-                    No records found.
-                </td>
-
-            </tr>
-
-        `;
-
-        updatePageInfo();
-
-        return;
-
-    }
 
     const start =
-        (currentPage - 1) * pageSize;
+        (currentPage - 1) *
+        rowsPerPage;
+
 
     const end =
-        Math.min(
-            start + pageSize,
-            filteredWorkers.length
-        );
+        start + rowsPerPage;
 
-    const rows =
+
+    const pageWorkers =
         filteredWorkers.slice(
             start,
             end
         );
 
-    rows.forEach(
+
+    pageWorkers.forEach(
         worker => {
 
-            const tr =
+            const row =
                 document.createElement("tr");
 
-            tr.innerHTML = `
+
+            row.innerHTML = `
 
                 <td>
                     ${escapeHTML(worker.id)}
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        formatDate(worker.birth_date)
-                    )}
+                    <strong>
+                        ${escapeHTML(worker.worker_name)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.population)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.houses)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.mobile_number)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.work_area)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.birth_date)}
                 </td>
 
                 <td>
@@ -1780,9 +1846,7 @@ function renderTable(){
                 </td>
 
                 <td>
-                    ${escapeHTML(
-                        formatDate(worker.date_of_joining)
-                    )}
+                    ${escapeHTML(worker.date_of_joining)}
                 </td>
 
                 <td>
@@ -1791,7 +1855,7 @@ function renderTable(){
 
                 <td>
                     ${escapeHTML(
-                        maskSensitive(
+                        maskAadhaar(
                             worker.aadhar_card_no
                         )
                     )}
@@ -1799,7 +1863,7 @@ function renderTable(){
 
                 <td>
                     ${escapeHTML(
-                        maskSensitive(
+                        maskBank(
                             worker.bank_acc_no
                         )
                     )}
@@ -1815,104 +1879,105 @@ function renderTable(){
 
                 <td>
 
-                    <div class="row-actions">
+                    <button
+                        class="action-btn edit-btn"
+                        onclick="openEditModal(${worker.id})"
+                    >
+                        Edit
+                    </button>
 
-                        <button
-                            class="btn btn-warning"
-                            onclick="openEdit(${Number(worker.id)})"
-                        >
-                            Edit
-                        </button>
-
-                        <button
-                            class="btn btn-danger"
-                            onclick="deleteWorker(${Number(worker.id)})"
-                        >
-                            Delete
-                        </button>
-
-                    </div>
+                    <button
+                        class="action-btn delete-btn"
+                        onclick="deleteWorker(${worker.id})"
+                    >
+                        Delete
+                    </button>
 
                 </td>
 
             `;
 
-            tbody.appendChild(tr);
+
+            tbody.appendChild(row);
 
         }
     );
 
-    updatePageInfo();
+
+    updateStats();
+
+    updatePagination();
 
 }
 
 
-function maskSensitive(value){
-
-    if(!value){
-        return "";
-    }
-
-    const text = String(value);
-
-    if(text.length <= 4){
-        return "••••";
-    }
-
-    return "••••••••" + text.slice(-4);
-
-}
-
+/* =====================================================
+   STATS
+===================================================== */
 
 function updateStats(){
 
     $("totalCount").textContent =
-        allWorkers.length;
+        workers.length;
 
     $("shownCount").textContent =
         filteredWorkers.length;
 
-    const abha =
-        allWorkers.filter(
-            worker => worker.aabha_id
+
+    const abhaCount =
+        workers.filter(
+            worker =>
+                worker.aabha_id
         ).length;
 
-    $("abhaCount").textContent =
-        abha;
 
-    const bank =
-        allWorkers.filter(
+    const bankCount =
+        workers.filter(
             worker =>
-                worker.bank_acc_no &&
-                worker.bank_name &&
+                worker.bank_acc_no ||
+                worker.bank_name ||
                 worker.ifsc_code
         ).length;
 
+
+    $("abhaCount").textContent =
+        abhaCount;
+
     $("bankCount").textContent =
-        bank;
+        bankCount;
 
 }
 
 
-function totalPages(){
+/* =====================================================
+   PAGINATION
+===================================================== */
 
-    return Math.max(
-        1,
-        Math.ceil(
-            filteredWorkers.length / pageSize
-        )
-    );
+function updatePagination(){
 
-}
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredWorkers.length /
+                rowsPerPage
+            )
+        );
 
-
-function updatePageInfo(){
 
     $("pageInfo").textContent =
         "Page " +
         currentPage +
         " of " +
-        totalPages();
+        totalPages;
+
+
+    $("prevBtn").disabled =
+        currentPage <= 1;
+
+
+    $("nextBtn").disabled =
+        currentPage >= totalPages;
 
 }
 
@@ -1932,7 +1997,14 @@ function previousPage(){
 
 function nextPage(){
 
-    if(currentPage < totalPages()){
+    const totalPages =
+        Math.ceil(
+            filteredWorkers.length /
+            rowsPerPage
+        );
+
+
+    if(currentPage < totalPages){
 
         currentPage++;
 
@@ -1943,54 +2015,341 @@ function nextPage(){
 }
 
 
-function changePageSize(){
+/* =====================================================
+   EDIT MODAL
+===================================================== */
 
-    pageSize =
-        Number(
-            $("pageSize").value
-        ) || 10;
+function openEditModal(id){
 
-    currentPage = 1;
+    const worker =
+        workers.find(
+            item =>
+                Number(item.id) ===
+                Number(id)
+        );
 
-    renderTable();
+
+    if(!worker){
+        return;
+    }
+
+
+    $("edit_id").value =
+        worker.id;
+
+
+    $("edit_worker_name").value =
+        worker.worker_name || "";
+
+
+    $("edit_population").value =
+        worker.population ?? "";
+
+
+    $("edit_houses").value =
+        worker.houses ?? "";
+
+
+    $("edit_mobile_number").value =
+        worker.mobile_number || "";
+
+
+    $("edit_work_area").value =
+        worker.work_area || "";
+
+
+    $("edit_birth_date").value =
+        worker.birth_date || "";
+
+
+    $("edit_age").value =
+        worker.age ?? "";
+
+
+    $("edit_date_of_joining").value =
+        worker.date_of_joining || "";
+
+
+    $("edit_aabha_id").value =
+        worker.aabha_id || "";
+
+
+    $("edit_aadhar_card_no").value =
+        worker.aadhar_card_no || "";
+
+
+    $("edit_bank_acc_no").value =
+        worker.bank_acc_no || "";
+
+
+    $("edit_bank_name").value =
+        worker.bank_name || "";
+
+
+    $("edit_ifsc_code").value =
+        worker.ifsc_code || "";
+
+
+    $("editModal")
+        .classList
+        .remove("hidden");
 
 }
 
 
-async function refreshData(){
+function closeEditModal(){
+
+    $("editModal")
+        .classList
+        .add("hidden");
+
+}
+
+
+/* =====================================================
+   UPDATE WORKER
+===================================================== */
+
+async function updateWorker(){
+
+    const id =
+        $("edit_id").value;
+
+
+    const data = {
+
+        worker_name:
+            $("edit_worker_name")
+            .value
+            .trim() || null,
+
+        population:
+            $("edit_population").value !== ""
+                ? Number(
+                    $("edit_population").value
+                )
+                : null,
+
+        houses:
+            $("edit_houses").value !== ""
+                ? Number(
+                    $("edit_houses").value
+                )
+                : null,
+
+        mobile_number:
+            $("edit_mobile_number")
+            .value
+            .trim() || null,
+
+        work_area:
+            $("edit_work_area")
+            .value
+            .trim() || null,
+
+        birth_date:
+            $("edit_birth_date").value ||
+            null,
+
+        age:
+            $("edit_age").value
+                ? Number(
+                    $("edit_age").value
+                )
+                : null,
+
+        date_of_joining:
+            $("edit_date_of_joining")
+            .value ||
+            null,
+
+        aabha_id:
+            $("edit_aabha_id")
+            .value
+            .trim() || null,
+
+        aadhar_card_no:
+            $("edit_aadhar_card_no")
+            .value
+            .trim() || null,
+
+        bank_acc_no:
+            $("edit_bank_acc_no")
+            .value
+            .trim() || null,
+
+        bank_name:
+            $("edit_bank_name")
+            .value
+            .trim() || null,
+
+        ifsc_code:
+            $("edit_ifsc_code")
+            .value
+            .trim()
+            .toUpperCase() ||
+            null
+
+    };
+
+
+    if(!validateData(data)){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("aasha_workers")
+        .update(data)
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "Error updating worker: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    closeEditModal();
+
+    showMessage(
+        "Worker updated successfully."
+    );
 
     await loadWorkers();
 
 }
 
 
+/* =====================================================
+   DELETE WORKER
+===================================================== */
+
+async function deleteWorker(id){
+
+    const worker =
+        workers.find(
+            item =>
+                Number(item.id) ===
+                Number(id)
+        );
+
+
+    const workerName =
+        worker?.worker_name ||
+        "this worker";
+
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete " +
+            workerName +
+            "?"
+        );
+
+
+    if(!confirmDelete){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("aasha_workers")
+        .delete()
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "Error deleting worker: " +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "Worker deleted successfully."
+    );
+
+
+    await loadWorkers();
+
+}
+
+
+/* =====================================================
+   CSV EXPORT
+===================================================== */
+
 function csvEscape(value){
 
-    const text =
-        String(value ?? "");
+    if(value === null ||
+       value === undefined){
 
-    return (
-        '"' +
-        text.replaceAll('"','""') +
-        '"'
-    );
+        return "";
+
+    }
+
+
+    const str =
+        String(value)
+        .replace(/"/g,'""');
+
+
+    return `"${str}"`;
 
 }
 
 
 function exportCSV(){
 
-    if(filteredWorkers.length === 0){
+    if(!filteredWorkers.length){
 
-        alert("No records to export.");
+        alert(
+            "No records available to export."
+        );
 
         return;
 
     }
 
+
     const headers = [
 
         "ID",
+        "Worker Name",
+        "Population",
+        "Houses",
+        "Mobile Number",
+        "Work Area",
         "Birth Date",
         "Age",
         "Date of Joining",
@@ -2002,143 +2361,137 @@ function exportCSV(){
 
     ];
 
-    const lines = [];
 
-    lines.push(
+    const rows =
+        filteredWorkers.map(
+            worker => [
+
+                worker.id,
+
+                worker.worker_name,
+
+                worker.population,
+
+                worker.houses,
+
+                worker.mobile_number,
+
+                worker.work_area,
+
+                worker.birth_date,
+
+                worker.age,
+
+                worker.date_of_joining,
+
+                worker.aabha_id,
+
+                worker.aadhar_card_no,
+
+                worker.bank_acc_no,
+
+                worker.bank_name,
+
+                worker.ifsc_code
+
+            ]
+        );
+
+
+    let csv =
         headers
         .map(csvEscape)
-        .join(",")
-    );
+        .join(",") +
+        "\n";
 
-    filteredWorkers.forEach(
-        worker => {
 
-            lines.push(
+    rows.forEach(
+        row => {
 
-                [
-
-                    worker.id,
-                    worker.birth_date,
-                    worker.age,
-                    worker.date_of_joining,
-                    worker.aabha_id,
-                    worker.aadhar_card_no,
-                    worker.bank_acc_no,
-                    worker.bank_name,
-                    worker.ifsc_code
-
-                ]
+            csv +=
+                row
                 .map(csvEscape)
-                .join(",")
-
-            );
+                .join(",") +
+                "\n";
 
         }
     );
 
+
     const blob =
         new Blob(
-            [
-                "\ufeff" +
-                lines.join("\n")
-            ],
+            [csv],
             {
                 type:
                     "text/csv;charset=utf-8;"
             }
         );
 
+
     const url =
         URL.createObjectURL(blob);
+
 
     const link =
         document.createElement("a");
 
+
     link.href = url;
 
     link.download =
-        "asha_workers.csv";
+        "aasha_workers.csv";
+
 
     document.body.appendChild(link);
 
     link.click();
 
-    link.remove();
+    document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
 
 }
 
 
-$("loginPassword")
-    .addEventListener(
-        "keydown",
-        function(event){
+/* =====================================================
+   AUTH STATE
+===================================================== */
 
-            if(event.key === "Enter"){
-                login();
-            }
+supabaseClient.auth.onAuthStateChange(
+    async (event, session) => {
+
+        if(session){
+
+            $("loginPage")
+                .classList
+                .add("hidden");
+
+            $("app")
+                .classList
+                .remove("hidden");
+
+            await loadWorkers();
 
         }
-    );
+        else{
 
+            $("app")
+                .classList
+                .add("hidden");
 
-document.addEventListener(
-    "keydown",
-    function(event){
+            $("loginPage")
+                .classList
+                .remove("hidden");
 
-        if(event.key === "Escape"){
-            closeEdit();
         }
 
     }
 );
 
 
-function closeEdit(){
-
-    $("editModal")
-        .classList
-        .remove("show");
-
-}
-
-
-$("editModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(
-                event.target.id === "editModal"
-            ){
-
-                closeEdit();
-
-            }
-
-        }
-    );
-
-
-supabaseClient
-    .auth
-    .onAuthStateChange(
-        function(event,session){
-
-            if(session){
-
-                showApp();
-
-            }else{
-
-                hideApp();
-
-            }
-
-        }
-    );
-
+/* =====================================================
+   START
+===================================================== */
 
 checkSession();
 
