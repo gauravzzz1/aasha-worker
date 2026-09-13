@@ -3,192 +3,536 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ASHA Supervisor Management System</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>ASHA Worker Management System</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-/* ================================
-   BASIC SETTINGS
-================================ */
+:root{
+    --primary:#123c69;
+    --secondary:#0b5cab;
+    --success:#198754;
+    --danger:#dc3545;
+    --warning:#f59e0b;
+    --light:#f4f7fb;
+    --white:#ffffff;
+    --text:#172033;
+    --muted:#667085;
+    --border:#d9dee7;
+}
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
 }
 
 body{
-    background:#f2f5f8;
-    color:#222;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--light);
+    color:var(--text);
 }
 
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* ================================
+   LOGIN
+================================ */
+
+.login-screen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(
+        135deg,
+        #123c69,
+        #0b5cab
+    );
+}
+
+.login-card{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border-radius:18px;
+    padding:32px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.login-card h1{
+    color:var(--primary);
+    margin-bottom:8px;
+}
+
+.login-card p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+/* ================================
+   FORM
+================================ */
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.form-control{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    outline:none;
+    background:#fff;
+}
+
+.form-control:focus{
+    border-color:var(--secondary);
+    box-shadow:
+        0 0 0 3px rgba(11,92,171,.1);
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn{
+    border:0;
+    border-radius:8px;
+    padding:11px 16px;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#0d3155;
+}
+
+.btn-success{
+    background:var(--success);
+    color:white;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+.btn-warning{
+    background:var(--warning);
+    color:white;
+}
+
+.btn-light{
+    background:#eef2f7;
+    color:#26364d;
+}
+
+.btn-block{
+    width:100%;
+}
 
 /* ================================
    HEADER
 ================================ */
 
-.header{
-    background:#174a5b;
+.app-header{
+    background:var(--primary);
     color:white;
-    padding:25px 15px;
-    text-align:center;
+    padding:17px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.15);
 }
 
-.header h1{
-    font-size:30px;
-    margin-bottom:8px;
+.brand h1{
+    font-size:23px;
 }
 
-.header p{
-    font-size:16px;
+.brand small{
+    opacity:.85;
 }
 
+.header-actions{
+    display:flex;
+    gap:8px;
+}
 
 /* ================================
-   MAIN CONTAINER
+   CONTAINER
 ================================ */
 
 .container{
-    width:90%;
-    max-width:1100px;
-    margin:30px auto;
+    width:95%;
+    max-width:1500px;
+    margin:25px auto;
 }
-
 
 /* ================================
-   DASHBOARD CARDS
+   DASHBOARD
 ================================ */
 
-.cards{
+.stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:17px;
+
+    margin-bottom:22px;
 }
 
-.card{
+.stat{
     background:white;
-    padding:25px 15px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 3px 10px rgba(0,0,0,0.10);
+    border-radius:14px;
+    padding:21px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.06);
 }
 
-.card h2{
-    color:#174a5b;
+.stat .label{
+    color:var(--muted);
+    font-size:13px;
+    font-weight:bold;
+}
+
+.stat .value{
+    color:var(--primary);
     font-size:30px;
-    margin-bottom:8px;
+    font-weight:800;
+    margin-top:7px;
 }
-
-.card p{
-    color:#666;
-    font-size:15px;
-}
-
 
 /* ================================
-   SECTION TITLE
+   PANEL
 ================================ */
 
-.section-title{
-    margin-top:40px;
-    margin-bottom:20px;
-    font-size:24px;
-    color:#174a5b;
-}
-
-
-/* ================================
-   SUB-CENTER CARDS
-================================ */
-
-.centers{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-
-.center{
+.panel{
     background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.10);
-    border-left:5px solid #174a5b;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:22px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.06);
 }
 
-.center h3{
-    color:#174a5b;
-    font-size:21px;
-    margin-bottom:12px;
-    text-transform:uppercase;
-}
+.panel-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-.center p{
-    color:#666;
     margin-bottom:18px;
 }
 
+.panel-title h2{
+    color:var(--primary);
+    font-size:19px;
+}
 
 /* ================================
-   BUTTON
+   GRID
 ================================ */
 
-.button{
-    display:inline-block;
-    background:#174a5b;
-    color:white;
-    padding:10px 18px;
-    border-radius:6px;
-    text-decoration:none;
-    cursor:pointer;
-    border:none;
+.grid{
+    display:grid;
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
 }
 
-.button:hover{
-    background:#0e3542;
+/* ================================
+   ACTIONS
+================================ */
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:17px;
 }
 
+/* ================================
+   NOTICE
+================================ */
+
+.notice{
+    background:#fff7e6;
+    border:1px solid #ffd591;
+    color:#7a4b00;
+
+    padding:12px;
+    border-radius:9px;
+
+    margin-bottom:17px;
+
+    font-size:13px;
+}
+
+/* ================================
+   SEARCH TOOLBAR
+================================ */
+
+.toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin-bottom:17px;
+}
+
+.search{
+    flex:1;
+    min-width:250px;
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+th,
+td{
+    padding:12px 10px;
+    border-bottom:
+        1px solid #e8ebf0;
+
+    text-align:left;
+}
+
+th{
+    background:#f5f7fa;
+    color:#344054;
+
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+td{
+    font-size:13px;
+}
+
+tr:hover td{
+    background:#fafcff;
+}
+
+.row-actions{
+    display:flex;
+    gap:6px;
+}
+
+/* ================================
+   MESSAGE
+================================ */
+
+.message{
+    padding:11px 13px;
+    border-radius:8px;
+
+    margin-top:12px;
+
+    display:none;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.success{
+    background:#d1fae5;
+    color:#065f46;
+}
+
+.message.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ================================
+   MODAL
+================================ */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    background:
+        rgba(0,0,0,.55);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    z-index:1000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-card{
+    width:100%;
+    max-width:850px;
+
+    max-height:92vh;
+    overflow:auto;
+
+    background:white;
+
+    border-radius:16px;
+    padding:23px;
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.close{
+    background:none;
+    border:0;
+
+    font-size:28px;
+    color:#667085;
+}
+
+/* ================================
+   PAGINATION
+================================ */
+
+.pagination{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:17px;
+}
+
+/* ================================
+   EMPTY
+================================ */
+
+.empty{
+    text-align:center;
+    padding:35px;
+
+    color:var(--muted);
+}
 
 /* ================================
    FOOTER
 ================================ */
 
 .footer{
-    margin-top:45px;
-    background:#174a5b;
-    color:white;
     text-align:center;
-    padding:18px;
-    font-size:14px;
-}
 
+    color:var(--muted);
+
+    font-size:12px;
+
+    padding:25px;
+}
 
 /* ================================
    MOBILE
 ================================ */
 
-@media(max-width:800px){
+@media(max-width:1100px){
 
-    .cards{
-        grid-template-columns:repeat(2,1fr);
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .centers{
-        grid-template-columns:1fr;
+    .grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
 
-@media(max-width:500px){
+@media(max-width:650px){
 
-    .cards{
+    .stats{
         grid-template-columns:1fr;
     }
 
-    .header h1{
-        font-size:24px;
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .app-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .header-actions{
+        width:100%;
+    }
+
+    .header-actions button{
+        flex:1;
+    }
+
+    .container{
+        width:96%;
+    }
+
+    .panel{
+        padding:15px;
     }
 
 }
@@ -197,71 +541,358 @@ body{
 
 </head>
 
-
 <body>
 
 
-<!-- =================================
-     HEADER
-================================= -->
+<!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
 
-<div class="header">
+<div
+    id="loginScreen"
+    class="login-screen"
+>
 
-    <h1>ASHA Supervisor Management System</h1>
+    <div class="login-card">
 
-    <p>ASHA Worker Data Management</p>
+        <h1>
+            ASHA Worker
+        </h1>
+
+        <p>
+            Administrator Login
+        </p>
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                id="loginEmail"
+                class="form-control"
+                type="email"
+                placeholder="Admin email"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                id="loginPassword"
+                class="form-control"
+                type="password"
+                placeholder="Password"
+            >
+
+        </div>
+
+
+        <button
+            id="loginBtn"
+            class="btn btn-primary btn-block"
+            onclick="login()"
+        >
+            Login
+        </button>
+
+
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
+
+    </div>
 
 </div>
 
 
 
-<!-- =================================
-     MAIN CONTENT
-================================= -->
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
 
-<div class="container">
-
-
-    <!-- DASHBOARD -->
-
-    <div class="cards">
+<div
+    id="app"
+    class="hidden"
+>
 
 
-        <div class="card">
+<header class="app-header">
 
-            <h2>4</h2>
+    <div class="brand">
 
-            <p>Total Sub-Centers</p>
+        <h1>
+            ASHA Worker Management System
+        </h1>
+
+        <small>
+            Digital Health Worker Management
+        </small>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            class="btn btn-light"
+            onclick="refreshData()"
+        >
+            Refresh
+        </button>
+
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================================================
+     STATISTICS
+========================================================= -->
+
+<section class="stats">
+
+
+    <div class="stat">
+
+        <div class="label">
+            TOTAL WORKERS
+        </div>
+
+        <div
+            id="totalCount"
+            class="value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="label">
+            RECORDS SHOWN
+        </div>
+
+        <div
+            id="shownCount"
+            class="value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="label">
+            WITH ABHA ID
+        </div>
+
+        <div
+            id="abhaCount"
+            class="value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="label">
+            BANK DETAILS
+        </div>
+
+        <div
+            id="bankCount"
+            class="value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     ADD WORKER
+========================================================= -->
+
+<section class="panel">
+
+
+    <div class="panel-title">
+
+        <h2>
+            Add ASHA Worker
+        </h2>
+
+    </div>
+
+
+    <div class="notice">
+
+        Aadhaar and bank details are sensitive.
+        Keep Supabase Row Level Security enabled.
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <div class="form-group">
+
+            <label>
+                Birth Date
+            </label>
+
+            <input
+                id="birth_date"
+                class="form-control"
+                type="date"
+                onchange="calculateAge(
+                    'birth_date',
+                    'age'
+                )"
+            >
 
         </div>
 
 
+        <div class="form-group">
 
-        <div class="card">
+            <label>
+                Age
+            </label>
 
-            <h2>0</h2>
-
-            <p>Total ASHA Workers</p>
-
-        </div>
-
-
-
-        <div class="card">
-
-            <h2>0</h2>
-
-            <p>PFMS Beneficiaries</p>
+            <input
+                id="age"
+                class="form-control"
+                type="number"
+                readonly
+            >
 
         </div>
 
 
+        <div class="form-group">
 
-        <div class="card">
+            <label>
+                Date of Joining
+            </label>
 
-            <h2>0</h2>
+            <input
+                id="date_of_joining"
+                class="form-control"
+                type="date"
+            >
 
-            <p>Pending Records</p>
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ABHA ID
+            </label>
+
+            <input
+                id="aabha_id"
+                class="form-control"
+                type="text"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Aadhaar Card No.
+            </label>
+
+            <input
+                id="aadhar_card_no"
+                class="form-control"
+                type="text"
+                inputmode="numeric"
+                maxlength="12"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Bank Account No.
+            </label>
+
+            <input
+                id="bank_acc_no"
+                class="form-control"
+                type="text"
+                inputmode="numeric"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Bank Name
+            </label>
+
+            <input
+                id="bank_name"
+                class="form-control"
+                type="text"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                IFSC Code
+            </label>
+
+            <input
+                id="ifsc_code"
+                class="form-control"
+                type="text"
+            >
 
         </div>
 
@@ -269,95 +900,2090 @@ body{
     </div>
 
 
+    <div class="actions">
 
-    <!-- =================================
-         SUB-CENTERS
-    ================================= -->
-
-    <h2 class="section-title">
-
-        Sub-Centers
-
-    </h2>
+        <button
+            class="btn btn-success"
+            onclick="addWorker()"
+        >
+            + Add Worker
+        </button>
 
 
+        <button
+            class="btn btn-light"
+            onclick="clearForm()"
+        >
+            Clear
+        </button>
 
-    <div class="centers">
-
-
-        <!-- NIMGAON KHALU -->
-
-        <div class="center">
-
-            <h3>Nimgaon Khalu</h3>
-
-            <p>ASHA Workers: 0</p>
-
-            <a class="button">View Workers</a>
-
-        </div>
+    </div>
 
 
+    <div
+        id="formMessage"
+        class="message"
+    ></div>
 
-        <!-- AJNUJ -->
 
-        <div class="center">
-
-            <h3>Ajnuj</h3>
-
-            <p>ASHA Workers: 0</p>
-
-            <a class="button">View Workers</a>
-
-        </div>
+</section>
 
 
 
-        <!-- ANANDWADI -->
+<!-- =========================================================
+     WORKER TABLE
+========================================================= -->
 
-        <div class="center">
-
-            <h3>Anandwadi</h3>
-
-            <p>ASHA Workers: 0</p>
-
-            <a class="button">View Workers</a>
-
-        </div>
+<section class="panel">
 
 
+    <div class="panel-title">
 
-        <!-- SHRIGONDA FACTORY -->
+        <h2>
+            ASHA Worker Records
+        </h2>
 
-        <div class="center">
 
-            <h3>Shrigonda Factory</h3>
+        <button
+            class="btn btn-primary"
+            onclick="exportCSV()"
+        >
+            Export CSV
+        </button>
 
-            <p>ASHA Workers: 0</p>
+    </div>
 
-            <a class="button">View Workers</a>
 
-        </div>
+    <div class="toolbar">
+
+
+        <input
+            id="searchBox"
+            class="form-control search"
+            placeholder="Search records..."
+            oninput="applyFilters()"
+        >
+
+
+        <input
+            id="joinFrom"
+            class="form-control"
+            type="date"
+            onchange="applyFilters()"
+        >
+
+
+        <input
+            id="joinTo"
+            class="form-control"
+            type="date"
+            onchange="applyFilters()"
+        >
+
+
+        <select
+            id="pageSize"
+            class="form-control"
+            onchange="changePageSize()"
+        >
+
+            <option value="10">
+                10 rows
+            </option>
+
+            <option value="25">
+                25 rows
+            </option>
+
+            <option value="50">
+                50 rows
+            </option>
+
+            <option value="100">
+                100 rows
+            </option>
+
+        </select>
 
 
     </div>
 
 
-</div>
+
+    <div class="table-wrap">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Birth Date
+                    </th>
+
+                    <th>
+                        Age
+                    </th>
+
+                    <th>
+                        Joining Date
+                    </th>
+
+                    <th>
+                        ABHA ID
+                    </th>
+
+                    <th>
+                        Aadhaar
+                    </th>
+
+                    <th>
+                        Bank Account
+                    </th>
+
+                    <th>
+                        Bank Name
+                    </th>
+
+                    <th>
+                        IFSC
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="workerTable"
+            ></tbody>
+
+
+        </table>
+
+
+    </div>
 
 
 
-<!-- =================================
-     FOOTER
-================================= -->
+    <div class="pagination">
+
+        <button
+            class="btn btn-light"
+            onclick="previousPage()"
+        >
+            Previous
+        </button>
+
+
+        <span
+            id="pageInfo"
+        >
+            Page 1
+        </span>
+
+
+        <button
+            class="btn btn-light"
+            onclick="nextPage()"
+        >
+            Next
+        </button>
+
+    </div>
+
+
+</section>
+
 
 <div class="footer">
 
-    ASHA Supervisor Management System
+    ASHA Worker Management System
 
 </div>
 
 
-</body>
+</main>
 
+</div>
+
+
+
+<!-- =========================================================
+     EDIT MODAL
+========================================================= -->
+
+<div
+    id="editModal"
+    class="modal"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-head">
+
+            <h2>
+                Edit ASHA Worker
+            </h2>
+
+
+            <button
+                class="close"
+                onclick="closeEdit()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <input
+            id="edit_id"
+            type="hidden"
+        >
+
+
+        <div class="grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Birth Date
+                </label>
+
+                <input
+                    id="edit_birth_date"
+                    class="form-control"
+                    type="date"
+                    onchange="calculateAge(
+                        'edit_birth_date',
+                        'edit_age'
+                    )"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Age
+                </label>
+
+                <input
+                    id="edit_age"
+                    class="form-control"
+                    type="number"
+                    readonly
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Date of Joining
+                </label>
+
+                <input
+                    id="edit_date_of_joining"
+                    class="form-control"
+                    type="date"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    ABHA ID
+                </label>
+
+                <input
+                    id="edit_aabha_id"
+                    class="form-control"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Aadhaar Card No.
+                </label>
+
+                <input
+                    id="edit_aadhar_card_no"
+                    class="form-control"
+                    type="text"
+                    maxlength="12"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Bank Account No.
+                </label>
+
+                <input
+                    id="edit_bank_acc_no"
+                    class="form-control"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Bank Name
+                </label>
+
+                <input
+                    id="edit_bank_name"
+                    class="form-control"
+                    type="text"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    IFSC Code
+                </label>
+
+                <input
+                    id="edit_ifsc_code"
+                    class="form-control"
+                    type="text"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="btn btn-success"
+                onclick="updateWorker()"
+            >
+                Save Changes
+            </button>
+
+
+            <button
+                class="btn btn-light"
+                onclick="closeEdit()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+
+        <div
+            id="editMessage"
+            class="message"
+        ></div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   SUPABASE CONFIGURATION
+========================================================= */
+
+const SUPABASE_URL =
+    "https://dosftayxhqvwqnutrbge.supabase.co";
+
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_saemaeefPQJTpEPLztTw4w_jY0WQLhS";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let allWorkers = [];
+
+let filteredWorkers = [];
+
+let currentPage = 1;
+
+let pageSize = 10;
+
+
+/* =========================================================
+   SHORT SELECTOR
+========================================================= */
+
+function $(id){
+
+    return document.getElementById(id);
+
+}
+
+
+/* =========================================================
+   HTML SECURITY
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    id,
+    text,
+    type
+){
+
+    const element = $(id);
+
+    element.textContent = text;
+
+    element.className =
+        "message show " + type;
+
+}
+
+
+function hideMessage(id){
+
+    const element = $(id);
+
+    element.className = "message";
+
+    element.textContent = "";
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function normalizeDate(value){
+
+    if(!value){
+
+        return "";
+
+    }
+
+    return String(value).slice(0,10);
+
+}
+
+
+function formatDate(value){
+
+    if(!value){
+
+        return "";
+
+    }
+
+    const date =
+        new Date(
+            value + "T00:00:00"
+        );
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return value;
+
+    }
+
+    return date.toLocaleDateString(
+        "en-IN"
+    );
+
+}
+
+
+/* =========================================================
+   AGE
+========================================================= */
+
+function calculateAge(
+    dateId,
+    ageId
+){
+
+    const value =
+        $(dateId).value;
+
+    if(!value){
+
+        $(ageId).value = "";
+
+        return;
+
+    }
+
+
+    const birth =
+        new Date(
+            value + "T00:00:00"
+        );
+
+    const today =
+        new Date();
+
+
+    let age =
+        today.getFullYear()
+        -
+        birth.getFullYear();
+
+
+    const month =
+        today.getMonth()
+        -
+        birth.getMonth();
+
+
+    if(
+        month < 0 ||
+        (
+            month === 0 &&
+            today.getDate()
+            <
+            birth.getDate()
+        )
+    ){
+
+        age--;
+
+    }
+
+
+    $(ageId).value =
+        age >= 0
+        ? age
+        : "";
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function login(){
+
+    hideMessage(
+        "loginMessage"
+    );
+
+
+    const email =
+        $("loginEmail")
+        .value
+        .trim();
+
+
+    const password =
+        $("loginPassword")
+        .value;
+
+
+    if(
+        !email ||
+        !password
+    ){
+
+        showMessage(
+            "loginMessage",
+            "Enter email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    $("loginBtn").disabled =
+        true;
+
+
+    $("loginBtn").textContent =
+        "Logging in...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .auth
+        .signInWithPassword({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+    $("loginBtn").disabled =
+        false;
+
+
+    $("loginBtn").textContent =
+        "Login";
+
+
+    if(error){
+
+        showMessage(
+            "loginMessage",
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!data.session){
+
+        showMessage(
+            "loginMessage",
+            "Login failed.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showApp();
+
+    await loadWorkers();
+
+}
+
+
+/* =========================================================
+   SHOW APP
+========================================================= */
+
+function showApp(){
+
+    $("loginScreen")
+        .classList
+        .add("hidden");
+
+
+    $("app")
+        .classList
+        .remove("hidden");
+
+}
+
+
+/* =========================================================
+   HIDE APP
+========================================================= */
+
+function hideApp(){
+
+    $("app")
+        .classList
+        .add("hidden");
+
+
+    $("loginScreen")
+        .classList
+        .remove("hidden");
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+async function logout(){
+
+    await supabaseClient
+        .auth
+        .signOut();
+
+
+    hideApp();
+
+}
+
+
+/* =========================================================
+   SESSION
+========================================================= */
+
+async function checkSession(){
+
+    const {
+        data
+    } =
+        await supabaseClient
+        .auth
+        .getSession();
+
+
+    if(
+        data &&
+        data.session
+    ){
+
+        showApp();
+
+        await loadWorkers();
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD DATABASE
+========================================================= */
+
+async function loadWorkers(){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("asha_worker")
+        .select("*")
+        .order(
+            "id",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "formMessage",
+            "Database error: "
+            +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    allWorkers =
+        data || [];
+
+
+    applyFilters();
+
+    updateStats();
+
+}
+
+
+/* =========================================================
+   FORM DATA
+========================================================= */
+
+function getFormData(){
+
+    return {
+
+        birth_date:
+            $("birth_date")
+            .value
+            || null,
+
+        age:
+            $("age").value
+            ?
+            Number(
+                $("age").value
+            )
+            :
+            null,
+
+        date_of_joining:
+            $("date_of_joining")
+            .value
+            || null,
+
+        aabha_id:
+            $("aabha_id")
+            .value
+            .trim()
+            || null,
+
+        aadhar_card_no:
+            $("aadhar_card_no")
+            .value
+            .trim()
+            || null,
+
+        bank_acc_no:
+            $("bank_acc_no")
+            .value
+            .trim()
+            || null,
+
+        bank_name:
+            $("bank_name")
+            .value
+            .trim()
+            || null,
+
+        ifsc_code:
+            $("ifsc_code")
+            .value
+            .trim()
+            .toUpperCase()
+            || null
+
+    };
+
+}
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+function validateWorker(data){
+
+    if(
+        data.aadhar_card_no &&
+        !/^\d{12}$/.test(
+            data.aadhar_card_no
+        )
+    ){
+
+        return "Aadhaar number must contain 12 digits.";
+
+    }
+
+
+    if(
+        data.birth_date &&
+        data.date_of_joining &&
+        data.date_of_joining
+        <
+        data.birth_date
+    ){
+
+        return "Date of joining cannot be before birth date.";
+
+    }
+
+
+    if(
+        data.age !== null &&
+        data.age < 0
+    ){
+
+        return "Age cannot be negative.";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   ADD WORKER
+========================================================= */
+
+async function addWorker(){
+
+    hideMessage(
+        "formMessage"
+    );
+
+
+    const data =
+        getFormData();
+
+
+    const validation =
+        validateWorker(
+            data
+        );
+
+
+    if(validation){
+
+        showMessage(
+            "formMessage",
+            validation,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("asha_worker")
+        .insert([
+            data
+        ]);
+
+
+    if(error){
+
+        console.error(error);
+
+        showMessage(
+            "formMessage",
+            "Insert error: "
+            +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "formMessage",
+        "Worker added successfully.",
+        "success"
+    );
+
+
+    clearForm();
+
+    await loadWorkers();
+
+}
+
+
+/* =========================================================
+   CLEAR FORM
+========================================================= */
+
+function clearForm(){
+
+    $("birth_date").value =
+        "";
+
+    $("age").value =
+        "";
+
+    $("date_of_joining").value =
+        "";
+
+    $("aabha_id").value =
+        "";
+
+    $("aadhar_card_no").value =
+        "";
+
+    $("bank_acc_no").value =
+        "";
+
+    $("bank_name").value =
+        "";
+
+    $("ifsc_code").value =
+        "";
+
+}
+
+
+/* =========================================================
+   EDIT OPEN
+========================================================= */
+
+function openEdit(id){
+
+    const worker =
+        allWorkers.find(
+            item =>
+                Number(item.id)
+                ===
+                Number(id)
+        );
+
+
+    if(!worker){
+
+        alert(
+            "Worker not found."
+        );
+
+        return;
+
+    }
+
+
+    $("edit_id").value =
+        worker.id ?? "";
+
+
+    $("edit_birth_date").value =
+        normalizeDate(
+            worker.birth_date
+        );
+
+
+    $("edit_age").value =
+        worker.age ?? "";
+
+
+    $("edit_date_of_joining").value =
+        normalizeDate(
+            worker.date_of_joining
+        );
+
+
+    $("edit_aabha_id").value =
+        worker.aabha_id ?? "";
+
+
+    $("edit_aadhar_card_no").value =
+        worker.aadhar_card_no ?? "";
+
+
+    $("edit_bank_acc_no").value =
+        worker.bank_acc_no ?? "";
+
+
+    $("edit_bank_name").value =
+        worker.bank_name ?? "";
+
+
+    $("edit_ifsc_code").value =
+        worker.ifsc_code ?? "";
+
+
+    hideMessage(
+        "editMessage"
+    );
+
+
+    $("editModal")
+        .classList
+        .add("show");
+
+}
+
+
+/* =========================================================
+   UPDATE
+========================================================= */
+
+async function updateWorker(){
+
+    hideMessage(
+        "editMessage"
+    );
+
+
+    const id =
+        $("edit_id").value;
+
+
+    const data = {
+
+        birth_date:
+            $("edit_birth_date")
+            .value
+            || null,
+
+        age:
+            $("edit_age").value
+            ?
+            Number(
+                $("edit_age").value
+            )
+            :
+            null,
+
+        date_of_joining:
+            $("edit_date_of_joining")
+            .value
+            || null,
+
+        aabha_id:
+            $("edit_aabha_id")
+            .value
+            .trim()
+            || null,
+
+        aadhar_card_no:
+            $("edit_aadhar_card_no")
+            .value
+            .trim()
+            || null,
+
+        bank_acc_no:
+            $("edit_bank_acc_no")
+            .value
+            .trim()
+            || null,
+
+        bank_name:
+            $("edit_bank_name")
+            .value
+            .trim()
+            || null,
+
+        ifsc_code:
+            $("edit_ifsc_code")
+            .value
+            .trim()
+            .toUpperCase()
+            || null
+
+    };
+
+
+    const validation =
+        validateWorker(
+            data
+        );
+
+
+    if(validation){
+
+        showMessage(
+            "editMessage",
+            validation,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("asha_worker")
+        .update(data)
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(error){
+
+        showMessage(
+            "editMessage",
+            "Update error: "
+            +
+            error.message,
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    closeEdit();
+
+    await loadWorkers();
+
+    showMessage(
+        "formMessage",
+        "Worker updated successfully.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+async function deleteWorker(id){
+
+    const yes =
+        confirm(
+            "Are you sure you want to delete this record?"
+        );
+
+
+    if(!yes){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+        .from("asha_worker")
+        .delete()
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(error){
+
+        alert(
+            "Delete error: "
+            +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    await loadWorkers();
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function applyFilters(){
+
+    const search =
+        $("searchBox")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const from =
+        $("joinFrom").value;
+
+
+    const to =
+        $("joinTo").value;
+
+
+    filteredWorkers =
+        allWorkers.filter(
+            worker => {
+
+
+                const text = [
+
+                    worker.id,
+
+                    worker.birth_date,
+
+                    worker.age,
+
+                    worker.date_of_joining,
+
+                    worker.aabha_id,
+
+                    worker.aadhar_card_no,
+
+                    worker.bank_acc_no,
+
+                    worker.bank_name,
+
+                    worker.ifsc_code
+
+                ]
+                .join(" ")
+                .toLowerCase();
+
+
+                if(
+                    search &&
+                    !text.includes(
+                        search
+                    )
+                ){
+
+                    return false;
+
+                }
+
+
+                const joining =
+                    normalizeDate(
+                        worker.date_of_joining
+                    );
+
+
+                if(
+                    from &&
+                    joining &&
+                    joining < from
+                ){
+
+                    return false;
+
+                }
+
+
+                if(
+                    to &&
+                    joining &&
+                    joining > to
+                ){
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    currentPage =
+        1;
+
+
+    renderTable();
+
+
+    $("shownCount")
+        .textContent =
+        filteredWorkers.length;
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function renderTable(){
+
+    const tbody =
+        $("workerTable");
+
+
+    tbody.innerHTML =
+        "";
+
+
+    if(
+        filteredWorkers.length
+        ===
+        0
+    ){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="10"
+                    class="empty"
+                >
+
+                    No records found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        updatePageInfo();
+
+        return;
+
+    }
+
+
+    const start =
+        (
+            currentPage
+            -
+            1
+        )
+        *
+        pageSize;
+
+
+    const end =
+        Math.min(
+            start
+            +
+            pageSize,
+            filteredWorkers.length
+        );
+
+
+    const rows =
+        filteredWorkers.slice(
+            start,
+            end
+        );
+
+
+    rows.forEach(
+        worker => {
+
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML = `
+
+                <td>
+                    ${escapeHTML(
+                        worker.id
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        formatDate(
+                            worker.birth_date
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        worker.age
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        formatDate(
+                            worker.date_of_joining
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        worker.aabha_id
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        maskSensitive(
+                            worker.aadhar_card_no
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        maskSensitive(
+                            worker.bank_acc_no
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        worker.bank_name
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        worker.ifsc_code
+                    )}
+                </td>
+
+                <td>
+
+                    <div
+                        class="row-actions"
+                    >
+
+                        <button
+                            class="btn btn-warning"
+                            onclick="openEdit(
+                                ${Number(
+                                    worker.id
+                                )}
+                            )"
+                        >
+                            Edit
+                        </button>
+
+
+                        <button
+                            class="btn btn-danger"
+                            onclick="deleteWorker(
+                                ${Number(
+                                    worker.id
+                                )}
+                            )"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+
+    updatePageInfo();
+
+}
+
+
+/* =========================================================
+   MASK SENSITIVE DATA
+========================================================= */
+
+function maskSensitive(value){
+
+    if(!value){
+
+        return "";
+
+    }
+
+
+    const text =
+        String(value);
+
+
+    if(
+        text.length <= 4
+    ){
+
+        return "••••";
+
+    }
+
+
+    return (
+        "••••••••"
+        +
+        text.slice(-4)
+    );
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStats(){
+
+    $("totalCount")
+        .textContent =
+        allWorkers.length;
+
+
+    $("shownCount")
+        .textContent =
+        filteredWorkers.length;
+
+
+    const abha =
+        allWorkers.filter(
+            worker =>
+                worker.aabha_id
+        ).length;
+
+
+    $("abhaCount")
+        .textContent =
+        abha;
+
+
+    const bank =
+        allWorkers.filter(
+            worker =>
+                worker.bank_acc_no
+                &&
+                worker.bank_name
+                &&
+                worker.ifsc_code
+        ).length;
+
+
+    $("bankCount")
+        .textContent =
+        bank;
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function totalPages(){
+
+    return Math.max(
+        1,
+        Math.ceil(
+            filteredWorkers.length
+            /
+            pageSize
+        )
+    );
+
+}
+
+
+function updatePageInfo(){
+
+    $("pageInfo")
+        .textContent =
+        "Page "
+        +
+        currentPage
+        +
+        " of "
+        +
+        totalPages();
+
+}
+
+
+function previousPage(){
+
+    if(
+        currentPage > 1
+    ){
+
+        currentPage--;
+
+        renderTable();
+
+    }
+
+}
+
+
+function nextPage(){
+
+    if(
+        currentPage
+        <
+        totalPages()
+    ){
+
+        currentPage++;
+
+        renderTable();
+
+    }
+
+}
+
+
+function changePageSize(){
+
+    pageSize =
+        Number(
+            $("pageSize").value
+        )
+        ||
+        10;
+
+
+    currentPage =
+        1;
+
+
+    renderTable();
+
+}
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+async function refreshData(){
+
+    await loadWorkers();
+
+}
+
+
+/* =========================================================
+   CSV EXPORT
+========================================================= */
+
+function csvEscape(value){
+
+    const text =
+        String(
+            value ?? ""
+        );
+
+
+    return (
+        '"'
+        +
+        text.replaceAll(
+            '"',
+            '""'
+        )
+        +
+        '"'
+    );
+
+}
+
+
+function exportCSV(){
+
+    if(
+        filteredWorkers.length
+        ===
+        0
+    ){
+
+        alert(
+            "No records to export."
+        );
+
+        return;
+
+    }
+
+
+    const headers = [
+
+        "ID",
+
+        "Birth Date",
+
+        "Age",
+
+        "Date of Joining",
+
+        "ABHA ID",
+
+        "Aadhaar Card No",
+
+        "Bank Account No",
+
+        "Bank Name",
+
+        "IFSC Code"
+
+    ];
+
+
+    const lines = [];
+
+
+    lines.push(
+        headers
+        .map(
+            csvEscape
+        )
+        .join(",")
+    );
+
+
+    filteredWorkers.forEach(
+        worker => {
+
+
+            lines.push(
+
+                [
+
+                    worker.id,
+
+                    worker.birth_date,
+
+                    worker.age,
+
+                    worker.date_of_joining,
+
+                    worker.aabha_id,
+
+                    worker.aadhar_card_no,
+
+                    worker.bank_acc_no,
+
+                    worker.bank_name,
+
+                    worker.ifsc_code
+
+                ]
+
+                .map(
+                    csvEscape
+                )
+
+                .join(",")
+
+            );
+
+        }
+    );
+
+
+    const blob =
+        new Blob(
+            [
+                "\ufeff"
+                +
+                lines.join("\n")
+            ],
+            {
+                type:
+                    "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href =
+        url;
+
+
+    link.download =
+        "asha_workers.csv";
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+$("loginPassword")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key
+                ===
+                "Enter"
+            ){
+
+                login();
+
+            }
+
+        }
+    );
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key
+            ===
+            "Escape"
+        ){
+
+            closeEdit();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function closeEdit(){
+
+    $("editModal")
+        .classList
+        .remove("show");
+
+}
+
+
+$("editModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target.id
+                ===
+                "editModal"
+            ){
+
+                closeEdit();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+supabaseClient
+    .auth
+    .onAuthStateChange(
+        function(
+            event,
+            session
+        ){
+
+            if(session){
+
+                showApp();
+
+            }else{
+
+                hideApp();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+checkSession();
+
+</script>
+
+
+</body>
 </html>
