@@ -9,7 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -17,12 +16,24 @@
 }
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     background:#f4f7fb;
     color:#222;
 }
 
-/* LOGIN */
+.hidden{
+    display:none !important;
+}
+
+button{
+    border:none;
+    padding:10px 16px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* ================= LOGIN ================= */
 
 .login-page{
     min-height:100vh;
@@ -43,8 +54,8 @@ body{
 
 .login-box h1{
     text-align:center;
-    margin-bottom:10px;
     color:#1e3a8a;
+    margin-bottom:8px;
 }
 
 .login-box p{
@@ -53,7 +64,7 @@ body{
     margin-bottom:25px;
 }
 
-input, select{
+input,select{
     width:100%;
     padding:11px;
     border:1px solid #d1d5db;
@@ -68,14 +79,6 @@ label{
     font-size:14px;
 }
 
-button{
-    border:none;
-    padding:10px 16px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
 .login-btn{
     width:100%;
     background:#1e3a8a;
@@ -83,15 +86,24 @@ button{
     font-size:16px;
 }
 
-.login-btn:hover{
-    background:#172554;
+.message{
+    padding:10px 14px;
+    border-radius:7px;
+    margin-bottom:15px;
+    display:none;
 }
 
-.hidden{
-    display:none !important;
+.success{
+    background:#dcfce7;
+    color:#166534;
 }
 
-/* HEADER */
+.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* ================= HEADER ================= */
 
 .header{
     background:#0f172a;
@@ -113,12 +125,73 @@ button{
 }
 
 .container{
-    max-width:1500px;
+    max-width:1600px;
     margin:auto;
     padding:20px;
 }
 
-/* DASHBOARD */
+/* ================= CENTER PAGE ================= */
+
+.center-page{
+    min-height:calc(100vh - 75px);
+}
+
+.center-title{
+    text-align:center;
+    margin:20px 0 30px;
+}
+
+.center-title h2{
+    color:#1e3a8a;
+    font-size:30px;
+}
+
+.center-title p{
+    color:#64748b;
+    margin-top:8px;
+}
+
+.center-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:900px;
+    margin:0 auto;
+}
+
+.center-card{
+    background:white;
+    border-radius:16px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+    cursor:pointer;
+    transition:.2s;
+    border:2px solid transparent;
+}
+
+.center-card:hover{
+    transform:translateY(-5px);
+    border-color:#2563eb;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.center-icon{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.center-card h3{
+    font-size:22px;
+    color:#1e3a8a;
+    margin-bottom:8px;
+}
+
+.center-card p{
+    color:#64748b;
+}
+
+/* ================= DASHBOARD ================= */
 
 .stats{
     display:grid;
@@ -146,7 +219,7 @@ button{
     color:#1e3a8a;
 }
 
-/* FORM */
+/* ================= CARD ================= */
 
 .card{
     background:white;
@@ -161,14 +234,12 @@ button{
     color:#1e3a8a;
 }
 
+/* ================= FORM ================= */
+
 .form-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:10px 15px;
-}
-
-.form-group{
-    min-width:0;
 }
 
 .form-actions{
@@ -187,7 +258,23 @@ button{
     color:white;
 }
 
-/* SEARCH */
+/* ================= TOP BAR ================= */
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.back-btn{
+    background:#475569;
+    color:white;
+}
+
+/* ================= FILTER ================= */
 
 .filter-grid{
     display:grid;
@@ -200,7 +287,7 @@ button{
     margin-bottom:0;
 }
 
-/* TABLE */
+/* ================= TABLE ================= */
 
 .table-wrapper{
     overflow-x:auto;
@@ -209,10 +296,10 @@ button{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1600px;
+    min-width:1700px;
 }
 
-th, td{
+th,td{
     border-bottom:1px solid #e5e7eb;
     padding:11px 9px;
     text-align:left;
@@ -223,8 +310,6 @@ th, td{
 th{
     background:#1e3a8a;
     color:white;
-    position:sticky;
-    top:0;
 }
 
 tr:hover td{
@@ -247,7 +332,7 @@ tr:hover td{
     color:white;
 }
 
-/* PAGINATION */
+/* ================= PAGINATION ================= */
 
 .pagination{
     display:flex;
@@ -271,7 +356,7 @@ tr:hover td{
     font-weight:bold;
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal{
     position:fixed;
@@ -306,26 +391,7 @@ tr:hover td{
     font-size:20px;
 }
 
-/* MESSAGE */
-
-.message{
-    padding:10px 14px;
-    border-radius:7px;
-    margin-bottom:15px;
-    display:none;
-}
-
-.success{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.error{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:1000px){
 
@@ -337,16 +403,17 @@ tr:hover td{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .filter-grid{
-        grid-template-columns:1fr 1fr;
-    }
 }
 
-@media(max-width:600px){
+@media(max-width:650px){
 
     .header{
         flex-direction:column;
         align-items:flex-start;
+    }
+
+    .center-grid{
+        grid-template-columns:1fr;
     }
 
     .stats{
@@ -366,7 +433,6 @@ tr:hover td{
     }
 
 }
-
 </style>
 </head>
 
@@ -374,7 +440,7 @@ tr:hover td{
 
 
 <!-- =====================================================
-     LOGIN PAGE
+     LOGIN
 ===================================================== -->
 
 <div id="loginPage" class="login-page">
@@ -388,6 +454,7 @@ tr:hover td{
         <div id="loginMessage" class="message"></div>
 
         <label>Email</label>
+
         <input
             type="email"
             id="loginEmail"
@@ -395,6 +462,7 @@ tr:hover td{
         >
 
         <label>Password</label>
+
         <input
             type="password"
             id="loginPassword"
@@ -433,359 +501,134 @@ tr:hover td{
     </div>
 
 
-    <div class="container">
+    <!-- =================================================
+         CENTER SELECTION PAGE
+    ================================================== -->
 
+    <div
+        id="centerPage"
+        class="center-page"
+    >
 
-        <!-- MESSAGE -->
+        <div class="container">
 
-        <div id="mainMessage" class="message"></div>
+            <div class="center-title">
 
+                <h2>Select Sub-Center</h2>
 
-        <!-- =================================================
-             STATS
-        ================================================== -->
+                <p>
+                    Select a Sub-Center to view ASHA Workers
+                </p>
 
-        <div class="stats">
-
-            <div class="stat">
-                <h3>Total Workers</h3>
-                <strong id="totalCount">0</strong>
             </div>
 
-            <div class="stat">
-                <h3>Shown Records</h3>
-                <strong id="shownCount">0</strong>
-            </div>
 
-            <div class="stat">
-                <h3>ABHA Details</h3>
-                <strong id="abhaCount">0</strong>
-            </div>
+            <div class="center-grid">
 
-            <div class="stat">
-                <h3>Bank Details</h3>
-                <strong id="bankCount">0</strong>
-            </div>
 
-        </div>
+                <!-- NIMGAON KHALU -->
 
-
-        <!-- =================================================
-             ADD WORKER
-        ================================================== -->
-
-        <div class="card">
-
-            <h2>Add ASHA Worker</h2>
-
-            <form id="workerForm">
-
-                <div class="form-grid">
-
-
-                    <!-- WORKER NAME -->
-
-                    <div class="form-group">
-
-                        <label>Worker Name</label>
-
-                        <input
-                            type="text"
-                            id="worker_name"
-                            placeholder="Enter worker name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- POPULATION -->
-
-                    <div class="form-group">
-
-                        <label>Population</label>
-
-                        <input
-                            type="number"
-                            id="population"
-                            min="0"
-                            placeholder="Enter population"
-                        >
-
-                    </div>
-
-
-                    <!-- HOUSES -->
-
-                    <div class="form-group">
-
-                        <label>Houses</label>
-
-                        <input
-                            type="number"
-                            id="houses"
-                            min="0"
-                            placeholder="Enter number of houses"
-                        >
-
-                    </div>
-
-
-                    <!-- MOBILE -->
-
-                    <div class="form-group">
-
-                        <label>Mobile Number</label>
-
-                        <input
-                            type="tel"
-                            id="mobile_number"
-                            maxlength="10"
-                            placeholder="10 digit mobile number"
-                        >
-
-                    </div>
-
-
-                    <!-- WORK AREA -->
-
-                    <div class="form-group">
-
-                        <label>कार्य क्षेत्र / Work Area</label>
-
-                        <input
-                            type="text"
-                            id="work_area"
-                            placeholder="Enter work area"
-                        >
-
-                    </div>
-
-
-                    <!-- BIRTH DATE -->
-
-                    <div class="form-group">
-
-                        <label>Birth Date</label>
-
-                        <input
-                            type="date"
-                            id="birth_date"
-                        >
-
-                    </div>
-
-
-                    <!-- AGE -->
-
-                    <div class="form-group">
-
-                        <label>Age</label>
-
-                        <input
-                            type="number"
-                            id="age"
-                            readonly
-                            placeholder="Auto calculated"
-                        >
-
-                    </div>
-
-
-                    <!-- JOINING DATE -->
-
-                    <div class="form-group">
-
-                        <label>Date of Joining</label>
-
-                        <input
-                            type="date"
-                            id="date_of_joining"
-                        >
-
-                    </div>
-
-
-                    <!-- ABHA -->
-
-                    <div class="form-group">
-
-                        <label>ABHA ID</label>
-
-                        <input
-                            type="text"
-                            id="aabha_id"
-                            placeholder="Enter ABHA ID"
-                        >
-
-                    </div>
-
-
-                    <!-- AADHAAR -->
-
-                    <div class="form-group">
-
-                        <label>Aadhaar Card No.</label>
-
-                        <input
-                            type="text"
-                            id="aadhar_card_no"
-                            maxlength="12"
-                            placeholder="12 digit Aadhaar"
-                        >
-
-                    </div>
-
-
-                    <!-- BANK ACCOUNT -->
-
-                    <div class="form-group">
-
-                        <label>Bank Account No.</label>
-
-                        <input
-                            type="text"
-                            id="bank_acc_no"
-                            placeholder="Enter account number"
-                        >
-
-                    </div>
-
-
-                    <!-- BANK NAME -->
-
-                    <div class="form-group">
-
-                        <label>Bank Name</label>
-
-                        <input
-                            type="text"
-                            id="bank_name"
-                            placeholder="Enter bank name"
-                        >
-
-                    </div>
-
-
-                    <!-- IFSC -->
-
-                    <div class="form-group">
-
-                        <label>IFSC Code</label>
-
-                        <input
-                            type="text"
-                            id="ifsc_code"
-                            placeholder="Enter IFSC"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-actions">
-
-                    <button
-                        type="submit"
-                        class="primary"
-                    >
-                        Add Worker
-                    </button>
-
-                    <button
-                        type="button"
-                        class="secondary"
-                        onclick="resetForm()"
-                    >
-                        Clear
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-
-        <!-- =================================================
-             SEARCH / FILTER
-        ================================================== -->
-
-        <div class="card">
-
-            <h2>Search & Filter</h2>
-
-            <div class="filter-grid">
-
-                <div>
-
-                    <label>Search</label>
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search name, mobile, area, Aadhaar..."
-                        oninput="applyFilters()"
-                    >
-
-                </div>
-
-
-                <div>
-
-                    <label>Joining From</label>
-
-                    <input
-                        type="date"
-                        id="fromDate"
-                        onchange="applyFilters()"
-                    >
-
-                </div>
-
-
-                <div>
-
-                    <label>Joining To</label>
-
-                    <input
-                        type="date"
-                        id="toDate"
-                        onchange="applyFilters()"
-                    >
-
-                </div>
-
-
-                <button
-                    class="secondary"
-                    onclick="clearFilters()"
+                <div
+                    class="center-card"
+                    onclick="openCenter('Nimgaon Khalu')"
                 >
-                    Clear Filters
-                </button>
+
+                    <div class="center-icon">🏥</div>
+
+                    <h3>Nimgaon Khalu</h3>
+
+                    <p>View ASHA Workers</p>
+
+                </div>
+
+
+                <!-- AJNUJ -->
+
+                <div
+                    class="center-card"
+                    onclick="openCenter('Ajnuj')"
+                >
+
+                    <div class="center-icon">🏥</div>
+
+                    <h3>Ajnuj</h3>
+
+                    <p>View ASHA Workers</p>
+
+                </div>
+
+
+                <!-- AANANDWADI -->
+
+                <div
+                    class="center-card"
+                    onclick="openCenter('Aanandwadi')"
+                >
+
+                    <div class="center-icon">🏥</div>
+
+                    <h3>Aanandwadi</h3>
+
+                    <p>View ASHA Workers</p>
+
+                </div>
+
+
+                <!-- FACTORY -->
+
+                <div
+                    class="center-card"
+                    onclick="openCenter('Factory')"
+                >
+
+                    <div class="center-icon">🏥</div>
+
+                    <h3>Factory</h3>
+
+                    <p>View ASHA Workers</p>
+
+                </div>
 
             </div>
 
         </div>
 
+    </div>
 
-        <!-- =================================================
-             WORKER LIST
-        ================================================== -->
 
-        <div class="card">
+    <!-- =================================================
+         WORKER PAGE
+    ================================================== -->
 
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                gap:10px;
-                margin-bottom:15px;
-                flex-wrap:wrap;
-            ">
+    <div
+        id="workerPage"
+        class="hidden"
+    >
 
-                <h2 style="margin:0;">
+        <div class="container">
+
+            <div id="mainMessage" class="message"></div>
+
+
+            <!-- TOP BAR -->
+
+            <div class="top-bar">
+
+                <div>
+
+                    <button
+                        class="back-btn"
+                        onclick="backToCenters()"
+                    >
+                        ← Back to Sub-Centers
+                    </button>
+
+                </div>
+
+                <h2
+                    id="selectedCenterTitle"
+                    style="color:#1e3a8a;"
+                >
                     ASHA Workers
                 </h2>
 
@@ -799,65 +642,424 @@ tr:hover td{
             </div>
 
 
-            <div class="table-wrapper">
+            <!-- STATS -->
 
-                <table>
+            <div class="stats">
 
-                    <thead>
+                <div class="stat">
 
-                        <tr>
+                    <h3>Total Workers</h3>
 
-                            <th>ID</th>
-                            <th>Worker Name</th>
-                            <th>Population</th>
-                            <th>Houses</th>
-                            <th>Mobile Number</th>
-                            <th>Work Area</th>
-                            <th>Birth Date</th>
-                            <th>Age</th>
-                            <th>Joining Date</th>
-                            <th>ABHA ID</th>
-                            <th>Aadhaar</th>
-                            <th>Bank Account</th>
-                            <th>Bank Name</th>
-                            <th>IFSC</th>
-                            <th>Actions</th>
+                    <strong id="totalCount">
+                        0
+                    </strong>
 
-                        </tr>
+                </div>
 
-                    </thead>
 
-                    <tbody id="workerTableBody"></tbody>
+                <div class="stat">
 
-                </table>
+                    <h3>Shown Records</h3>
+
+                    <strong id="shownCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>Total Population</h3>
+
+                    <strong id="populationCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <h3>Total Houses</h3>
+
+                    <strong id="housesCount">
+                        0
+                    </strong>
+
+                </div>
 
             </div>
 
 
-            <!-- PAGINATION -->
+            <!-- ADD WORKER -->
 
-            <div class="pagination">
+            <div class="card">
 
-                <button
-                    id="prevBtn"
-                    onclick="previousPage()"
-                >
-                    Previous
-                </button>
+                <h2>Add ASHA Worker</h2>
 
-                <span
-                    class="page-info"
-                    id="pageInfo"
-                >
-                    Page 1
-                </span>
+                <form id="workerForm">
 
-                <button
-                    id="nextBtn"
-                    onclick="nextPage()"
-                >
-                    Next
-                </button>
+                    <div class="form-grid">
+
+
+                        <div>
+
+                            <label>Sub-Center</label>
+
+                            <select
+                                id="sub_center"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Sub-Center
+                                </option>
+
+                                <option value="Nimgaon Khalu">
+                                    Nimgaon Khalu
+                                </option>
+
+                                <option value="Ajnuj">
+                                    Ajnuj
+                                </option>
+
+                                <option value="Aanandwadi">
+                                    Aanandwadi
+                                </option>
+
+                                <option value="Factory">
+                                    Factory
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Worker Name</label>
+
+                            <input
+                                type="text"
+                                id="worker_name"
+                                placeholder="Enter worker name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Population</label>
+
+                            <input
+                                type="number"
+                                id="population"
+                                min="0"
+                                placeholder="Population"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Houses</label>
+
+                            <input
+                                type="number"
+                                id="houses"
+                                min="0"
+                                placeholder="Number of houses"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Mobile Number</label>
+
+                            <input
+                                type="tel"
+                                id="mobile_number"
+                                maxlength="10"
+                                placeholder="10 digit mobile"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>कार्य क्षेत्र / Work Area</label>
+
+                            <input
+                                type="text"
+                                id="work_area"
+                                placeholder="Work area"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Birth Date</label>
+
+                            <input
+                                type="date"
+                                id="birth_date"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Age</label>
+
+                            <input
+                                type="number"
+                                id="age"
+                                readonly
+                                placeholder="Auto"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Date of Joining</label>
+
+                            <input
+                                type="date"
+                                id="date_of_joining"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>ABHA ID</label>
+
+                            <input
+                                type="text"
+                                id="aabha_id"
+                                placeholder="ABHA ID"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Aadhaar Card No.</label>
+
+                            <input
+                                type="text"
+                                id="aadhar_card_no"
+                                maxlength="12"
+                                placeholder="12 digit Aadhaar"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Bank Account No.</label>
+
+                            <input
+                                type="text"
+                                id="bank_acc_no"
+                                placeholder="Account number"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>Bank Name</label>
+
+                            <input
+                                type="text"
+                                id="bank_name"
+                                placeholder="Bank name"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>IFSC Code</label>
+
+                            <input
+                                type="text"
+                                id="ifsc_code"
+                                placeholder="IFSC"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary"
+                        >
+                            Add Worker
+                        </button>
+
+                        <button
+                            type="button"
+                            class="secondary"
+                            onclick="resetForm()"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="card">
+
+                <h2>Search & Filter</h2>
+
+                <div class="filter-grid">
+
+                    <div>
+
+                        <label>Search</label>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search worker, mobile, area..."
+                            oninput="applyFilters()"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Joining From</label>
+
+                        <input
+                            type="date"
+                            id="fromDate"
+                            onchange="applyFilters()"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>Joining To</label>
+
+                        <input
+                            type="date"
+                            id="toDate"
+                            onchange="applyFilters()"
+                        >
+
+                    </div>
+
+
+                    <button
+                        class="secondary"
+                        onclick="clearFilters()"
+                    >
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="card">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Sub-Center</th>
+                                <th>Worker Name</th>
+                                <th>Population</th>
+                                <th>Houses</th>
+                                <th>Mobile Number</th>
+                                <th>Work Area</th>
+                                <th>Birth Date</th>
+                                <th>Age</th>
+                                <th>Joining Date</th>
+                                <th>ABHA ID</th>
+                                <th>Aadhaar</th>
+                                <th>Bank Account</th>
+                                <th>Bank Name</th>
+                                <th>IFSC</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="workerTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="pagination">
+
+                    <button
+                        id="prevBtn"
+                        onclick="previousPage()"
+                    >
+                        Previous
+                    </button>
+
+                    <span
+                        class="page-info"
+                        id="pageInfo"
+                    >
+                        Page 1
+                    </span>
+
+                    <button
+                        id="nextBtn"
+                        onclick="nextPage()"
+                    >
+                        Next
+                    </button>
+
+                </div>
 
             </div>
 
@@ -900,6 +1102,33 @@ tr:hover td{
 
 
         <div class="form-grid">
+
+
+            <div>
+
+                <label>Sub-Center</label>
+
+                <select id="edit_sub_center">
+
+                    <option value="Nimgaon Khalu">
+                        Nimgaon Khalu
+                    </option>
+
+                    <option value="Ajnuj">
+                        Ajnuj
+                    </option>
+
+                    <option value="Aanandwadi">
+                        Aanandwadi
+                    </option>
+
+                    <option value="Factory">
+                        Factory
+                    </option>
+
+                </select>
+
+            </div>
 
 
             <div>
@@ -1119,64 +1348,15 @@ let currentPage = 1;
 
 const rowsPerPage = 10;
 
+let selectedCenter = "";
+
 
 /* =====================================================
    HELPER
 ===================================================== */
 
 function $(id){
-
     return document.getElementById(id);
-
-}
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(
-    message,
-    type = "success"
-){
-
-    const box = $("mainMessage");
-
-    box.textContent = message;
-
-    box.className =
-        "message " + type;
-
-    box.style.display = "block";
-
-    setTimeout(
-        () => {
-            box.style.display = "none";
-        },
-        3500
-    );
-
-}
-
-
-/* =====================================================
-   LOGIN MESSAGE
-===================================================== */
-
-function showLoginMessage(
-    message,
-    type = "error"
-){
-
-    const box = $("loginMessage");
-
-    box.textContent = message;
-
-    box.className =
-        "message " + type;
-
-    box.style.display = "block";
-
 }
 
 
@@ -1199,11 +1379,10 @@ async function login(){
         );
 
         return;
-
     }
 
+
     const {
-        data,
         error
     } =
         await supabaseClient.auth.signInWithPassword({
@@ -1221,15 +1400,39 @@ async function login(){
         );
 
         return;
-
     }
 
-    $("loginPage").classList.add("hidden");
 
-    $("app").classList.remove("hidden");
+    $("loginPage")
+        .classList
+        .add("hidden");
+
+    $("app")
+        .classList
+        .remove("hidden");
 
     await loadWorkers();
 
+}
+
+
+/* =====================================================
+   LOGIN MESSAGE
+===================================================== */
+
+function showLoginMessage(message){
+
+    const box =
+        $("loginMessage");
+
+    box.textContent =
+        message;
+
+    box.className =
+        "message error";
+
+    box.style.display =
+        "block";
 }
 
 
@@ -1241,9 +1444,13 @@ async function logout(){
 
     await supabaseClient.auth.signOut();
 
-    $("app").classList.add("hidden");
+    $("app")
+        .classList
+        .add("hidden");
 
-    $("loginPage").classList.remove("hidden");
+    $("loginPage")
+        .classList
+        .remove("hidden");
 
 }
 
@@ -1259,15 +1466,75 @@ async function checkSession(){
     } =
         await supabaseClient.auth.getSession();
 
+
     if(data.session){
 
-        $("loginPage").classList.add("hidden");
+        $("loginPage")
+            .classList
+            .add("hidden");
 
-        $("app").classList.remove("hidden");
+        $("app")
+            .classList
+            .remove("hidden");
 
         await loadWorkers();
 
     }
+
+}
+
+
+/* =====================================================
+   OPEN CENTER
+===================================================== */
+
+function openCenter(center){
+
+    selectedCenter =
+        center;
+
+
+    $("centerPage")
+        .classList
+        .add("hidden");
+
+
+    $("workerPage")
+        .classList
+        .remove("hidden");
+
+
+    $("selectedCenterTitle")
+        .textContent =
+        center + " - ASHA Workers";
+
+
+    $("sub_center").value =
+        center;
+
+
+    currentPage = 1;
+
+    applyFilters();
+
+}
+
+
+/* =====================================================
+   BACK TO CENTERS
+===================================================== */
+
+function backToCenters(){
+
+    selectedCenter = "";
+
+    $("workerPage")
+        .classList
+        .add("hidden");
+
+    $("centerPage")
+        .classList
+        .remove("hidden");
 
 }
 
@@ -1297,31 +1564,44 @@ async function loadWorkers(){
 
         console.error(error);
 
-        showMessage(
-            "Error loading workers: " +
-            error.message,
-            "error"
-        );
+        if($("mainMessage")){
+
+            showMessage(
+                "Error loading workers: " +
+                error.message,
+                "error"
+            );
+
+        }
 
         return;
-
     }
 
 
-    workers = data || [];
+    workers =
+        data || [];
 
-    applyFilters();
+
+    if(selectedCenter){
+
+        applyFilters();
+
+    }
 
 }
 
 
 /* =====================================================
-   GET FORM DATA
+   FORM DATA
 ===================================================== */
 
 function getFormData(){
 
     return {
+
+        sub_center:
+            $("sub_center").value ||
+            null,
 
         worker_name:
             $("worker_name").value.trim() ||
@@ -1376,9 +1656,9 @@ function getFormData(){
 
         ifsc_code:
             $("ifsc_code")
-                .value
-                .trim()
-                .toUpperCase() ||
+            .value
+            .trim()
+            .toUpperCase() ||
             null
 
     };
@@ -1387,14 +1667,16 @@ function getFormData(){
 
 
 /* =====================================================
-   VALIDATE FORM
+   VALIDATION
 ===================================================== */
 
 function validateData(data){
 
     if(
         data.mobile_number &&
-        !/^\d{10}$/.test(data.mobile_number)
+        !/^\d{10}$/.test(
+            data.mobile_number
+        )
     ){
 
         alert(
@@ -1402,13 +1684,14 @@ function validateData(data){
         );
 
         return false;
-
     }
 
 
     if(
         data.aadhar_card_no &&
-        !/^\d{12}$/.test(data.aadhar_card_no)
+        !/^\d{12}$/.test(
+            data.aadhar_card_no
+        )
     ){
 
         alert(
@@ -1416,7 +1699,6 @@ function validateData(data){
         );
 
         return false;
-
     }
 
 
@@ -1430,7 +1712,6 @@ function validateData(data){
         );
 
         return false;
-
     }
 
 
@@ -1444,7 +1725,6 @@ function validateData(data){
         );
 
         return false;
-
     }
 
 
@@ -1457,29 +1737,29 @@ function validateData(data){
    ADD WORKER
 ===================================================== */
 
-$("workerForm").addEventListener(
+$("workerForm")
+.addEventListener(
     "submit",
     async function(e){
 
         e.preventDefault();
 
-        const formData =
+
+        const data =
             getFormData();
 
 
-        if(!validateData(formData)){
+        if(!validateData(data)){
             return;
         }
 
 
         const {
-            data,
             error
         } =
             await supabaseClient
             .from("aasha_workers")
-            .insert([formData])
-            .select();
+            .insert([data]);
 
 
         if(error){
@@ -1493,7 +1773,6 @@ $("workerForm").addEventListener(
             );
 
             return;
-
         }
 
 
@@ -1501,7 +1780,12 @@ $("workerForm").addEventListener(
             "Worker added successfully."
         );
 
+
         resetForm();
+
+        $("sub_center").value =
+            selectedCenter;
+
 
         await loadWorkers();
 
@@ -1515,7 +1799,8 @@ $("workerForm").addEventListener(
 
 function resetForm(){
 
-    $("workerForm").reset();
+    $("workerForm")
+        .reset();
 
     $("age").value = "";
 
@@ -1523,16 +1808,15 @@ function resetForm(){
 
 
 /* =====================================================
-   AGE CALCULATION
+   AGE
 ===================================================== */
 
-function calculateAgeFromDate(
-    date
-){
+function calculateAge(date){
 
     if(!date){
         return "";
     }
+
 
     const birth =
         new Date(date);
@@ -1540,25 +1824,30 @@ function calculateAgeFromDate(
     const today =
         new Date();
 
+
     let age =
         today.getFullYear() -
         birth.getFullYear();
+
 
     const month =
         today.getMonth() -
         birth.getMonth();
 
+
     if(
         month < 0 ||
         (
             month === 0 &&
-            today.getDate() < birth.getDate()
+            today.getDate() <
+            birth.getDate()
         )
     ){
 
         age--;
 
     }
+
 
     return age >= 0
         ? age
@@ -1567,12 +1856,13 @@ function calculateAgeFromDate(
 }
 
 
-$("birth_date").addEventListener(
+$("birth_date")
+.addEventListener(
     "change",
     function(){
 
         $("age").value =
-            calculateAgeFromDate(
+            calculateAge(
                 this.value
             );
 
@@ -1580,12 +1870,13 @@ $("birth_date").addEventListener(
 );
 
 
-$("edit_birth_date").addEventListener(
+$("edit_birth_date")
+.addEventListener(
     "change",
     function(){
 
         $("edit_age").value =
-            calculateAgeFromDate(
+            calculateAge(
                 this.value
             );
 
@@ -1594,16 +1885,23 @@ $("edit_birth_date").addEventListener(
 
 
 /* =====================================================
-   ESCAPE HTML
+   ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
 
-    if(value === null || value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
+
         return "";
+
     }
 
+
     return String(value)
+
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -1614,7 +1912,7 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   MASK DATA
+   MASK
 ===================================================== */
 
 function maskAadhaar(value){
@@ -1623,12 +1921,15 @@ function maskAadhaar(value){
         return "";
     }
 
+
     const str =
         String(value);
+
 
     if(str.length <= 4){
         return str;
     }
+
 
     return "XXXX XXXX " +
         str.slice(-4);
@@ -1642,12 +1943,15 @@ function maskBank(value){
         return "";
     }
 
+
     const str =
         String(value);
+
 
     if(str.length <= 4){
         return str;
     }
+
 
     return "XXXXXX" +
         str.slice(-4);
@@ -1656,10 +1960,16 @@ function maskBank(value){
 
 
 /* =====================================================
-   APPLY FILTERS
+   FILTER
 ===================================================== */
 
 function applyFilters(){
+
+    if(!selectedCenter){
+
+        return;
+    }
+
 
     const search =
         $("searchInput")
@@ -1667,8 +1977,10 @@ function applyFilters(){
         .trim()
         .toLowerCase();
 
+
     const from =
         $("fromDate").value;
+
 
     const to =
         $("toDate").value;
@@ -1678,32 +1990,34 @@ function applyFilters(){
         workers.filter(
             worker => {
 
+                /* CENTER FILTER */
+
+                if(
+                    worker.sub_center !==
+                    selectedCenter
+                ){
+
+                    return false;
+
+                }
+
+
+                /* SEARCH */
+
                 const searchable = [
 
                     worker.worker_name,
-
                     worker.population,
-
                     worker.houses,
-
                     worker.mobile_number,
-
                     worker.work_area,
-
                     worker.birth_date,
-
                     worker.age,
-
                     worker.date_of_joining,
-
                     worker.aabha_id,
-
                     worker.aadhar_card_no,
-
                     worker.bank_acc_no,
-
                     worker.bank_name,
-
                     worker.ifsc_code
 
                 ]
@@ -1715,6 +2029,8 @@ function applyFilters(){
                     !search ||
                     searchable.includes(search);
 
+
+                /* DATE FILTER */
 
                 const joiningDate =
                     worker.date_of_joining;
@@ -1754,7 +2070,7 @@ function applyFilters(){
 
 
 /* =====================================================
-   CLEAR FILTERS
+   CLEAR FILTER
 ===================================================== */
 
 function clearFilters(){
@@ -1779,11 +2095,8 @@ function renderTable(){
     const tbody =
         $("workerTableBody");
 
+
     tbody.innerHTML = "";
-
-
-    const total =
-        filteredWorkers.length;
 
 
     const start =
@@ -1813,6 +2126,10 @@ function renderTable(){
 
                 <td>
                     ${escapeHTML(worker.id)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.sub_center)}
                 </td>
 
                 <td>
@@ -1918,33 +2235,43 @@ function renderTable(){
 function updateStats(){
 
     $("totalCount").textContent =
-        workers.length;
+        filteredWorkers.length;
+
 
     $("shownCount").textContent =
         filteredWorkers.length;
 
 
-    const abhaCount =
-        workers.filter(
-            worker =>
-                worker.aabha_id
-        ).length;
+    const population =
+        filteredWorkers.reduce(
+            (sum,worker) =>
+                sum +
+                (
+                    Number(worker.population) ||
+                    0
+                ),
+            0
+        );
 
 
-    const bankCount =
-        workers.filter(
-            worker =>
-                worker.bank_acc_no ||
-                worker.bank_name ||
-                worker.ifsc_code
-        ).length;
+    const houses =
+        filteredWorkers.reduce(
+            (sum,worker) =>
+                sum +
+                (
+                    Number(worker.houses) ||
+                    0
+                ),
+            0
+        );
 
 
-    $("abhaCount").textContent =
-        abhaCount;
+    $("populationCount").textContent =
+        population.toLocaleString();
 
-    $("bankCount").textContent =
-        bankCount;
+
+    $("housesCount").textContent =
+        houses.toLocaleString();
 
 }
 
@@ -2004,7 +2331,10 @@ function nextPage(){
         );
 
 
-    if(currentPage < totalPages){
+    if(
+        currentPage <
+        totalPages
+    ){
 
         currentPage++;
 
@@ -2016,7 +2346,7 @@ function nextPage(){
 
 
 /* =====================================================
-   EDIT MODAL
+   EDIT
 ===================================================== */
 
 function openEditModal(id){
@@ -2036,6 +2366,10 @@ function openEditModal(id){
 
     $("edit_id").value =
         worker.id;
+
+
+    $("edit_sub_center").value =
+        worker.sub_center || "";
 
 
     $("edit_worker_name").value =
@@ -2107,7 +2441,7 @@ function closeEditModal(){
 
 
 /* =====================================================
-   UPDATE WORKER
+   UPDATE
 ===================================================== */
 
 async function updateWorker(){
@@ -2117,6 +2451,10 @@ async function updateWorker(){
 
 
     const data = {
+
+        sub_center:
+            $("edit_sub_center").value ||
+            null,
 
         worker_name:
             $("edit_worker_name")
@@ -2212,8 +2550,6 @@ async function updateWorker(){
 
     if(error){
 
-        console.error(error);
-
         showMessage(
             "Error updating worker: " +
             error.message,
@@ -2221,15 +2557,16 @@ async function updateWorker(){
         );
 
         return;
-
     }
 
 
     closeEditModal();
 
+
     showMessage(
         "Worker updated successfully."
     );
+
 
     await loadWorkers();
 
@@ -2237,7 +2574,7 @@ async function updateWorker(){
 
 
 /* =====================================================
-   DELETE WORKER
+   DELETE
 ===================================================== */
 
 async function deleteWorker(id){
@@ -2250,21 +2587,21 @@ async function deleteWorker(id){
         );
 
 
-    const workerName =
+    const name =
         worker?.worker_name ||
         "this worker";
 
 
-    const confirmDelete =
-        confirm(
+    if(
+        !confirm(
             "Are you sure you want to delete " +
-            workerName +
+            name +
             "?"
-        );
+        )
+    ){
 
-
-    if(!confirmDelete){
         return;
+
     }
 
 
@@ -2281,8 +2618,6 @@ async function deleteWorker(id){
 
 
     if(error){
-
-        console.error(error);
 
         showMessage(
             "Error deleting worker: " +
@@ -2306,25 +2641,68 @@ async function deleteWorker(id){
 
 
 /* =====================================================
-   CSV EXPORT
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    message,
+    type="success"
+){
+
+    const box =
+        $("mainMessage");
+
+
+    if(!box){
+        return;
+    }
+
+
+    box.textContent =
+        message;
+
+
+    box.className =
+        "message " + type;
+
+
+    box.style.display =
+        "block";
+
+
+    setTimeout(
+        () => {
+
+            box.style.display =
+                "none";
+
+        },
+        3500
+    );
+
+}
+
+
+/* =====================================================
+   CSV
 ===================================================== */
 
 function csvEscape(value){
 
-    if(value === null ||
-       value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
 
         return "";
 
     }
 
 
-    const str =
+    return '"' +
         String(value)
-        .replace(/"/g,'""');
-
-
-    return `"${str}"`;
+        .replace(/"/g,'""') +
+        '"';
 
 }
 
@@ -2338,13 +2716,13 @@ function exportCSV(){
         );
 
         return;
-
     }
 
 
     const headers = [
 
         "ID",
+        "Sub-Center",
         "Worker Name",
         "Population",
         "Houses",
@@ -2367,31 +2745,19 @@ function exportCSV(){
             worker => [
 
                 worker.id,
-
+                worker.sub_center,
                 worker.worker_name,
-
                 worker.population,
-
                 worker.houses,
-
                 worker.mobile_number,
-
                 worker.work_area,
-
                 worker.birth_date,
-
                 worker.age,
-
                 worker.date_of_joining,
-
                 worker.aabha_id,
-
                 worker.aadhar_card_no,
-
                 worker.bank_acc_no,
-
                 worker.bank_name,
-
                 worker.ifsc_code
 
             ]
@@ -2436,10 +2802,15 @@ function exportCSV(){
         document.createElement("a");
 
 
-    link.href = url;
+    link.href =
+        url;
+
 
     link.download =
-        "aasha_workers.csv";
+        selectedCenter
+            .replace(/\s+/g,"_")
+            .toLowerCase() +
+        "_asha_workers.csv";
 
 
     document.body.appendChild(link);
@@ -2458,7 +2829,10 @@ function exportCSV(){
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
-    async (event, session) => {
+    async (
+        event,
+        session
+    ) => {
 
         if(session){
 
