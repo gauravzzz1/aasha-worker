@@ -278,7 +278,7 @@ label{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1850px;
+    min-width:2600px;
 }
 
 th,td{
@@ -348,7 +348,7 @@ tr:hover td{
 }
 
 .modal-content{
-    width:900px;
+    width:1000px;
     max-width:100%;
     max-height:90vh;
     overflow-y:auto;
@@ -474,10 +474,7 @@ tr:hover td{
 
     <!-- CENTER PAGE -->
 
-    <div
-        id="centerPage"
-        class="center-page"
-    >
+    <div id="centerPage" class="center-page">
 
         <div class="container">
 
@@ -491,62 +488,42 @@ tr:hover td{
 
             </div>
 
-
             <div class="center-grid">
 
                 <div
                     class="center-card"
                     onclick="openCenter('Nimgaon Khalu')"
                 >
-
                     <div class="center-icon">🏥</div>
-
                     <h3>Nimgaon Khalu</h3>
-
                     <p>View ASHA Workers</p>
-
                 </div>
-
 
                 <div
                     class="center-card"
                     onclick="openCenter('Ajnuj')"
                 >
-
                     <div class="center-icon">🏥</div>
-
                     <h3>Ajnuj</h3>
-
                     <p>View ASHA Workers</p>
-
                 </div>
-
 
                 <div
                     class="center-card"
                     onclick="openCenter('Aanandwadi')"
                 >
-
                     <div class="center-icon">🏥</div>
-
                     <h3>Aanandwadi</h3>
-
                     <p>View ASHA Workers</p>
-
                 </div>
-
 
                 <div
                     class="center-card"
                     onclick="openCenter('Factory')"
                 >
-
                     <div class="center-icon">🏥</div>
-
                     <h3>Factory</h3>
-
                     <p>View ASHA Workers</p>
-
                 </div>
 
             </div>
@@ -558,27 +535,21 @@ tr:hover td{
 
     <!-- WORKER PAGE -->
 
-    <div
-        id="workerPage"
-        class="hidden"
-    >
+    <div id="workerPage" class="hidden">
 
         <div class="container">
 
             <div id="mainMessage" class="message"></div>
 
-
             <div class="top-bar">
 
                 <div>
-
                     <button
                         class="back-btn"
                         onclick="backToCenters()"
                     >
                         ← Back to Sub-Centers
                     </button>
-
                 </div>
 
                 <h2
@@ -603,43 +574,23 @@ tr:hover td{
             <div class="stats">
 
                 <div class="stat">
-
                     <h3>Total Workers</h3>
-
-                    <strong id="totalCount">
-                        0
-                    </strong>
-
+                    <strong id="totalCount">0</strong>
                 </div>
 
                 <div class="stat">
-
                     <h3>Shown Records</h3>
-
-                    <strong id="shownCount">
-                        0
-                    </strong>
-
+                    <strong id="shownCount">0</strong>
                 </div>
 
                 <div class="stat">
-
                     <h3>Total Population</h3>
-
-                    <strong id="populationCount">
-                        0
-                    </strong>
-
+                    <strong id="populationCount">0</strong>
                 </div>
 
                 <div class="stat">
-
                     <h3>Total Houses</h3>
-
-                    <strong id="housesCount">
-                        0
-                    </strong>
-
+                    <strong id="housesCount">0</strong>
                 </div>
 
             </div>
@@ -655,15 +606,10 @@ tr:hover td{
 
                     <div class="form-grid">
 
-
                         <div>
-
                             <label>Sub-Center</label>
 
-                            <select
-                                id="sub_center"
-                                required
-                            >
+                            <select id="sub_center" required>
 
                                 <option value="">
                                     Select Sub-Center
@@ -686,12 +632,10 @@ tr:hover td{
                                 </option>
 
                             </select>
-
                         </div>
 
 
                         <div>
-
                             <label>Worker Name</label>
 
                             <input
@@ -700,14 +644,10 @@ tr:hover td{
                                 placeholder="Enter worker name"
                                 required
                             >
-
                         </div>
 
 
-                        <!-- MAHA ID -->
-
                         <div>
-
                             <label>MAHA ID</label>
 
                             <input
@@ -715,12 +655,86 @@ tr:hover td{
                                 id="maha_id"
                                 placeholder="Enter MAHA ID"
                             >
-
                         </div>
 
 
                         <div>
+                            <label>Email ID</label>
 
+                            <input
+                                type="email"
+                                id="email_id"
+                                placeholder="Enter email ID"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>Education</label>
+
+                            <input
+                                type="text"
+                                id="education"
+                                placeholder="e.g. 10th, 12th, Graduate"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>PAN Card No.</label>
+
+                            <input
+                                type="text"
+                                id="pan_card_no"
+                                maxlength="10"
+                                placeholder="ABCDE1234F"
+                                oninput="this.value=this.value.toUpperCase()"
+                            >
+                        </div>
+
+
+                        <div>
+                            <label>Category</label>
+
+                            <select
+                                id="category"
+                                onchange="updateCasteOptions('add')"
+                            >
+
+                                <option value="">
+                                    Select Category
+                                </option>
+
+                                <option value="SC">SC</option>
+                                <option value="ST">ST</option>
+                                <option value="OBC">OBC</option>
+                                <option value="VJ-A">VJ-A</option>
+                                <option value="NT-B">NT-B</option>
+                                <option value="NT-C">NT-C</option>
+                                <option value="NT-D">NT-D</option>
+                                <option value="SBC">SBC</option>
+                                <option value="EWS">EWS</option>
+                                <option value="OPEN">OPEN</option>
+
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label>Caste</label>
+
+                            <input
+                                type="text"
+                                id="caste"
+                                list="addCasteList"
+                                placeholder="Select / enter caste"
+                            >
+
+                            <datalist id="addCasteList"></datalist>
+                        </div>
+
+
+                        <div>
                             <label>Population</label>
 
                             <input
@@ -729,12 +743,10 @@ tr:hover td{
                                 min="0"
                                 placeholder="Population"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Houses</label>
 
                             <input
@@ -743,12 +755,10 @@ tr:hover td{
                                 min="0"
                                 placeholder="Number of houses"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Mobile Number</label>
 
                             <input
@@ -757,12 +767,10 @@ tr:hover td{
                                 maxlength="10"
                                 placeholder="10 digit mobile"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>कार्य क्षेत्र / Work Area</label>
 
                             <input
@@ -770,24 +778,20 @@ tr:hover td{
                                 id="work_area"
                                 placeholder="Work area"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Birth Date</label>
 
                             <input
                                 type="date"
                                 id="birth_date"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Age</label>
 
                             <input
@@ -796,24 +800,20 @@ tr:hover td{
                                 readonly
                                 placeholder="Auto"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Date of Joining</label>
 
                             <input
                                 type="date"
                                 id="date_of_joining"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>ABHA ID</label>
 
                             <input
@@ -821,12 +821,10 @@ tr:hover td{
                                 id="aabha_id"
                                 placeholder="ABHA ID"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Aadhaar Card No.</label>
 
                             <input
@@ -835,12 +833,10 @@ tr:hover td{
                                 maxlength="12"
                                 placeholder="12 digit Aadhaar"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Bank Account No.</label>
 
                             <input
@@ -848,12 +844,10 @@ tr:hover td{
                                 id="bank_acc_no"
                                 placeholder="Account number"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>Bank Name</label>
 
                             <input
@@ -861,12 +855,10 @@ tr:hover td{
                                 id="bank_name"
                                 placeholder="Bank name"
                             >
-
                         </div>
 
 
                         <div>
-
                             <label>IFSC Code</label>
 
                             <input
@@ -874,7 +866,6 @@ tr:hover td{
                                 id="ifsc_code"
                                 placeholder="IFSC"
                             >
-
                         </div>
 
                     </div>
@@ -919,7 +910,7 @@ tr:hover td{
                         <input
                             type="text"
                             id="searchInput"
-                            placeholder="Search worker, MAHA ID, mobile, area..."
+                            placeholder="Search worker, MAHA ID, mobile, caste..."
                             oninput="applyFilters()"
                         >
 
@@ -980,6 +971,11 @@ tr:hover td{
                                 <th>Sub-Center</th>
                                 <th>Worker Name</th>
                                 <th>MAHA ID</th>
+                                <th>Email ID</th>
+                                <th>Education</th>
+                                <th>PAN Card</th>
+                                <th>Category</th>
+                                <th>Caste</th>
                                 <th>Population</th>
                                 <th>Houses</th>
                                 <th>Mobile Number</th>
@@ -1070,7 +1066,6 @@ tr:hover td{
 
         <div class="form-grid">
 
-
             <div>
 
                 <label>Sub-Center</label>
@@ -1110,8 +1105,6 @@ tr:hover td{
             </div>
 
 
-            <!-- EDIT MAHA ID -->
-
             <div>
 
                 <label>MAHA ID</label>
@@ -1119,8 +1112,93 @@ tr:hover td{
                 <input
                     type="text"
                     id="edit_maha_id"
-                    placeholder="Enter MAHA ID"
                 >
+
+            </div>
+
+
+            <div>
+
+                <label>Email ID</label>
+
+                <input
+                    type="email"
+                    id="edit_email_id"
+                    placeholder="Enter email ID"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Education</label>
+
+                <input
+                    type="text"
+                    id="edit_education"
+                    placeholder="e.g. 10th, 12th, Graduate"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>PAN Card No.</label>
+
+                <input
+                    type="text"
+                    id="edit_pan_card_no"
+                    maxlength="10"
+                    placeholder="ABCDE1234F"
+                    oninput="this.value=this.value.toUpperCase()"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Category</label>
+
+                <select
+                    id="edit_category"
+                    onchange="updateCasteOptions('edit')"
+                >
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="OBC">OBC</option>
+                    <option value="VJ-A">VJ-A</option>
+                    <option value="NT-B">NT-B</option>
+                    <option value="NT-C">NT-C</option>
+                    <option value="NT-D">NT-D</option>
+                    <option value="SBC">SBC</option>
+                    <option value="EWS">EWS</option>
+                    <option value="OPEN">OPEN</option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>Caste</label>
+
+                <input
+                    type="text"
+                    id="edit_caste"
+                    list="editCasteList"
+                    placeholder="Select / enter caste"
+                >
+
+                <datalist id="editCasteList"></datalist>
 
             </div>
 
@@ -1339,6 +1417,162 @@ let selectedCenter = "";
 
 function $(id){
     return document.getElementById(id);
+}
+
+
+/* =====================================================
+   CASTE SUGGESTIONS
+===================================================== */
+
+const casteOptions = {
+
+    SC: [
+        "Mahar",
+        "Matang",
+        "Chambhar",
+        "Mang",
+        "Bhangi",
+        "Mehtar",
+        "Other"
+    ],
+
+    ST: [
+        "Bhil",
+        "Gond",
+        "Warli",
+        "Koli Mahadev",
+        "Katkari",
+        "Thakar",
+        "Other"
+    ],
+
+    OBC: [
+        "Mali",
+        "Dhangar",
+        "Gurav",
+        "Kumbhar",
+        "Lohar",
+        "Sutar",
+        "Teli",
+        "Nhavi",
+        "Gawli",
+        "Banjara",
+        "Other"
+    ],
+
+    "VJ-A": [
+        "Vanjari",
+        "Banjara",
+        "Other"
+    ],
+
+    "NT-B": [
+        "Gosavi",
+        "Gopal",
+        "Other"
+    ],
+
+    "NT-C": [
+        "Dhangar",
+        "Other"
+    ],
+
+    "NT-D": [
+        "Vanjari",
+        "Other"
+    ],
+
+    SBC: [
+        "Special Backward Class",
+        "Other"
+    ],
+
+    EWS: [
+        "Not Applicable"
+    ],
+
+    OPEN: [
+        "Not Applicable"
+    ]
+
+};
+
+
+function updateCasteOptions(type){
+
+    let categoryId;
+    let casteListId;
+    let casteId;
+
+    if(type === "add"){
+
+        categoryId = "category";
+        casteListId = "addCasteList";
+        casteId = "caste";
+
+    }
+    else{
+
+        categoryId = "edit_category";
+        casteListId = "editCasteList";
+        casteId = "edit_caste";
+
+    }
+
+
+    const category =
+        $(categoryId).value;
+
+    const list =
+        $(casteListId);
+
+    const casteInput =
+        $(casteId);
+
+    list.innerHTML = "";
+
+
+    const options =
+        casteOptions[category] || [];
+
+
+    options.forEach(
+        caste => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                caste;
+
+            list.appendChild(option);
+
+        }
+    );
+
+
+    if(
+        category === "EWS" ||
+        category === "OPEN"
+    ){
+
+        casteInput.value =
+            "Not Applicable";
+
+    }
+    else{
+
+        if(
+            casteInput.value ===
+            "Not Applicable"
+        ){
+
+            casteInput.value = "";
+
+        }
+
+    }
+
 }
 
 
@@ -1589,10 +1823,31 @@ function getFormData(){
             $("worker_name").value.trim() ||
             null,
 
-        /* MAHA ID */
-
         maha_id:
             $("maha_id").value.trim() ||
+            null,
+
+        email_id:
+            $("email_id").value.trim() ||
+            null,
+
+        education:
+            $("education").value.trim() ||
+            null,
+
+        pan_card_no:
+            $("pan_card_no")
+            .value
+            .trim()
+            .toUpperCase() ||
+            null,
+
+        category:
+            $("category").value ||
+            null,
+
+        caste:
+            $("caste").value.trim() ||
             null,
 
         population:
@@ -1684,6 +1939,36 @@ function validateData(data){
 
         alert(
             "Aadhaar number must contain exactly 12 digits."
+        );
+
+        return false;
+    }
+
+
+    if(
+        data.pan_card_no &&
+        !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(
+            data.pan_card_no
+        )
+    ){
+
+        alert(
+            "PAN number must be in format ABCDE1234F."
+        );
+
+        return false;
+    }
+
+
+    if(
+        data.email_id &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            data.email_id
+        )
+    ){
+
+        alert(
+            "Please enter a valid Email ID."
         );
 
         return false;
@@ -1791,6 +2076,8 @@ function resetForm(){
         .reset();
 
     $("age").value = "";
+
+    $("addCasteList").innerHTML = "";
 
 }
 
@@ -1947,6 +2234,28 @@ function maskBank(value){
 }
 
 
+function maskPAN(value){
+
+    if(!value){
+        return "";
+    }
+
+
+    const str =
+        String(value);
+
+
+    if(str.length <= 4){
+        return str;
+    }
+
+
+    return "XXXXX" +
+        str.slice(-4);
+
+}
+
+
 /* =====================================================
    FILTER
 ===================================================== */
@@ -1978,8 +2287,6 @@ function applyFilters(){
         workers.filter(
             worker => {
 
-                /* CENTER FILTER */
-
                 if(
                     worker.sub_center !==
                     selectedCenter
@@ -1990,15 +2297,15 @@ function applyFilters(){
                 }
 
 
-                /* SEARCH */
-
                 const searchable = [
 
                     worker.worker_name,
-
-                    /* MAHA ID */
                     worker.maha_id,
-
+                    worker.email_id,
+                    worker.education,
+                    worker.pan_card_no,
+                    worker.category,
+                    worker.caste,
                     worker.population,
                     worker.houses,
                     worker.mobile_number,
@@ -2021,8 +2328,6 @@ function applyFilters(){
                     !search ||
                     searchable.includes(search);
 
-
-                /* DATE FILTER */
 
                 const joiningDate =
                     worker.date_of_joining;
@@ -2134,6 +2439,30 @@ function renderTable(){
                     <strong>
                         ${escapeHTML(worker.maha_id)}
                     </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.email_id)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.education)}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        maskPAN(
+                            worker.pan_card_no
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.category)}
+                </td>
+
+                <td>
+                    ${escapeHTML(worker.caste)}
                 </td>
 
                 <td>
@@ -2374,10 +2703,31 @@ function openEditModal(id){
         worker.worker_name || "";
 
 
-    /* MAHA ID */
-
     $("edit_maha_id").value =
         worker.maha_id || "";
+
+
+    $("edit_email_id").value =
+        worker.email_id || "";
+
+
+    $("edit_education").value =
+        worker.education || "";
+
+
+    $("edit_pan_card_no").value =
+        worker.pan_card_no || "";
+
+
+    $("edit_category").value =
+        worker.category || "";
+
+
+    updateCasteOptions("edit");
+
+
+    $("edit_caste").value =
+        worker.caste || "";
 
 
     $("edit_population").value =
@@ -2465,10 +2815,33 @@ async function updateWorker(){
             .value
             .trim() || null,
 
-        /* MAHA ID */
-
         maha_id:
             $("edit_maha_id")
+            .value
+            .trim() || null,
+
+        email_id:
+            $("edit_email_id")
+            .value
+            .trim() || null,
+
+        education:
+            $("edit_education")
+            .value
+            .trim() || null,
+
+        pan_card_no:
+            $("edit_pan_card_no")
+            .value
+            .trim()
+            .toUpperCase() || null,
+
+        category:
+            $("edit_category").value ||
+            null,
+
+        caste:
+            $("edit_caste")
             .value
             .trim() || null,
 
@@ -2735,10 +3108,12 @@ function exportCSV(){
         "ID",
         "Sub-Center",
         "Worker Name",
-
-        /* MAHA ID */
         "MAHA ID",
-
+        "Email ID",
+        "Education",
+        "PAN Card No",
+        "Category",
+        "Caste",
         "Population",
         "Houses",
         "Mobile Number",
@@ -2762,10 +3137,12 @@ function exportCSV(){
                 worker.id,
                 worker.sub_center,
                 worker.worker_name,
-
-                /* MAHA ID */
                 worker.maha_id,
-
+                worker.email_id,
+                worker.education,
+                worker.pan_card_no,
+                worker.category,
+                worker.caste,
                 worker.population,
                 worker.houses,
                 worker.mobile_number,
