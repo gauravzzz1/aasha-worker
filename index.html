@@ -33,8 +33,6 @@ button{
     font-weight:bold;
 }
 
-/* ================= LOGIN ================= */
-
 .login-page{
     min-height:100vh;
     display:flex;
@@ -103,8 +101,6 @@ label{
     color:#991b1b;
 }
 
-/* ================= HEADER ================= */
-
 .header{
     background:#0f172a;
     color:white;
@@ -129,8 +125,6 @@ label{
     margin:auto;
     padding:20px;
 }
-
-/* ================= CENTER PAGE ================= */
 
 .center-page{
     min-height:calc(100vh - 75px);
@@ -191,8 +185,6 @@ label{
     color:#64748b;
 }
 
-/* ================= DASHBOARD ================= */
-
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -219,8 +211,6 @@ label{
     color:#1e3a8a;
 }
 
-/* ================= CARD ================= */
-
 .card{
     background:white;
     padding:20px;
@@ -233,8 +223,6 @@ label{
     margin-bottom:18px;
     color:#1e3a8a;
 }
-
-/* ================= FORM ================= */
 
 .form-grid{
     display:grid;
@@ -258,8 +246,6 @@ label{
     color:white;
 }
 
-/* ================= TOP BAR ================= */
-
 .top-bar{
     display:flex;
     justify-content:space-between;
@@ -274,8 +260,6 @@ label{
     color:white;
 }
 
-/* ================= FILTER ================= */
-
 .filter-grid{
     display:grid;
     grid-template-columns:2fr 1fr 1fr auto;
@@ -287,8 +271,6 @@ label{
     margin-bottom:0;
 }
 
-/* ================= TABLE ================= */
-
 .table-wrapper{
     overflow-x:auto;
 }
@@ -296,7 +278,7 @@ label{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:1700px;
+    min-width:1850px;
 }
 
 th,td{
@@ -332,8 +314,6 @@ tr:hover td{
     color:white;
 }
 
-/* ================= PAGINATION ================= */
-
 .pagination{
     display:flex;
     justify-content:center;
@@ -355,8 +335,6 @@ tr:hover td{
 .page-info{
     font-weight:bold;
 }
-
-/* ================= MODAL ================= */
 
 .modal{
     position:fixed;
@@ -390,8 +368,6 @@ tr:hover td{
     background:#e5e7eb;
     font-size:20px;
 }
-
-/* ================= MOBILE ================= */
 
 @media(max-width:1000px){
 
@@ -438,10 +414,7 @@ tr:hover td{
 
 <body>
 
-
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<!-- LOGIN -->
 
 <div id="loginPage" class="login-page">
 
@@ -481,9 +454,7 @@ tr:hover td{
 </div>
 
 
-<!-- =====================================================
-     MAIN APP
-===================================================== -->
+<!-- MAIN APP -->
 
 <div id="app" class="hidden">
 
@@ -501,9 +472,7 @@ tr:hover td{
     </div>
 
 
-    <!-- =================================================
-         CENTER SELECTION PAGE
-    ================================================== -->
+    <!-- CENTER PAGE -->
 
     <div
         id="centerPage"
@@ -525,9 +494,6 @@ tr:hover td{
 
             <div class="center-grid">
 
-
-                <!-- NIMGAON KHALU -->
-
                 <div
                     class="center-card"
                     onclick="openCenter('Nimgaon Khalu')"
@@ -541,8 +507,6 @@ tr:hover td{
 
                 </div>
 
-
-                <!-- AJNUJ -->
 
                 <div
                     class="center-card"
@@ -558,8 +522,6 @@ tr:hover td{
                 </div>
 
 
-                <!-- AANANDWADI -->
-
                 <div
                     class="center-card"
                     onclick="openCenter('Aanandwadi')"
@@ -573,8 +535,6 @@ tr:hover td{
 
                 </div>
 
-
-                <!-- FACTORY -->
 
                 <div
                     class="center-card"
@@ -596,9 +556,7 @@ tr:hover td{
     </div>
 
 
-    <!-- =================================================
-         WORKER PAGE
-    ================================================== -->
+    <!-- WORKER PAGE -->
 
     <div
         id="workerPage"
@@ -609,8 +567,6 @@ tr:hover td{
 
             <div id="mainMessage" class="message"></div>
 
-
-            <!-- TOP BAR -->
 
             <div class="top-bar">
 
@@ -656,7 +612,6 @@ tr:hover td{
 
                 </div>
 
-
                 <div class="stat">
 
                     <h3>Shown Records</h3>
@@ -667,7 +622,6 @@ tr:hover td{
 
                 </div>
 
-
                 <div class="stat">
 
                     <h3>Total Population</h3>
@@ -677,7 +631,6 @@ tr:hover td{
                     </strong>
 
                 </div>
-
 
                 <div class="stat">
 
@@ -746,6 +699,21 @@ tr:hover td{
                                 id="worker_name"
                                 placeholder="Enter worker name"
                                 required
+                            >
+
+                        </div>
+
+
+                        <!-- MAHA ID -->
+
+                        <div>
+
+                            <label>MAHA ID</label>
+
+                            <input
+                                type="text"
+                                id="maha_id"
+                                placeholder="Enter MAHA ID"
                             >
 
                         </div>
@@ -951,7 +919,7 @@ tr:hover td{
                         <input
                             type="text"
                             id="searchInput"
-                            placeholder="Search worker, mobile, area..."
+                            placeholder="Search worker, MAHA ID, mobile, area..."
                             oninput="applyFilters()"
                         >
 
@@ -1011,6 +979,7 @@ tr:hover td{
                                 <th>ID</th>
                                 <th>Sub-Center</th>
                                 <th>Worker Name</th>
+                                <th>MAHA ID</th>
                                 <th>Population</th>
                                 <th>Houses</th>
                                 <th>Mobile Number</th>
@@ -1070,9 +1039,7 @@ tr:hover td{
 </div>
 
 
-<!-- =====================================================
-     EDIT MODAL
-===================================================== -->
+<!-- EDIT MODAL -->
 
 <div
     id="editModal"
@@ -1138,6 +1105,21 @@ tr:hover td{
                 <input
                     type="text"
                     id="edit_worker_name"
+                >
+
+            </div>
+
+
+            <!-- EDIT MAHA ID -->
+
+            <div>
+
+                <label>MAHA ID</label>
+
+                <input
+                    type="text"
+                    id="edit_maha_id"
+                    placeholder="Enter MAHA ID"
                 >
 
             </div>
@@ -1607,6 +1589,12 @@ function getFormData(){
             $("worker_name").value.trim() ||
             null,
 
+        /* MAHA ID */
+
+        maha_id:
+            $("maha_id").value.trim() ||
+            null,
+
         population:
             $("population").value !== ""
                 ? Number($("population").value)
@@ -2007,6 +1995,10 @@ function applyFilters(){
                 const searchable = [
 
                     worker.worker_name,
+
+                    /* MAHA ID */
+                    worker.maha_id,
+
                     worker.population,
                     worker.houses,
                     worker.mobile_number,
@@ -2135,6 +2127,12 @@ function renderTable(){
                 <td>
                     <strong>
                         ${escapeHTML(worker.worker_name)}
+                    </strong>
+                </td>
+
+                <td>
+                    <strong>
+                        ${escapeHTML(worker.maha_id)}
                     </strong>
                 </td>
 
@@ -2376,6 +2374,12 @@ function openEditModal(id){
         worker.worker_name || "";
 
 
+    /* MAHA ID */
+
+    $("edit_maha_id").value =
+        worker.maha_id || "";
+
+
     $("edit_population").value =
         worker.population ?? "";
 
@@ -2458,6 +2462,13 @@ async function updateWorker(){
 
         worker_name:
             $("edit_worker_name")
+            .value
+            .trim() || null,
+
+        /* MAHA ID */
+
+        maha_id:
+            $("edit_maha_id")
             .value
             .trim() || null,
 
@@ -2724,6 +2735,10 @@ function exportCSV(){
         "ID",
         "Sub-Center",
         "Worker Name",
+
+        /* MAHA ID */
+        "MAHA ID",
+
         "Population",
         "Houses",
         "Mobile Number",
@@ -2747,6 +2762,10 @@ function exportCSV(){
                 worker.id,
                 worker.sub_center,
                 worker.worker_name,
+
+                /* MAHA ID */
+                worker.maha_id,
+
                 worker.population,
                 worker.houses,
                 worker.mobile_number,
